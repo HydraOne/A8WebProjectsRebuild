@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http:springframework.org.dtd/spring-beans.dtd">
+<beans default-autowire="byName">
+	<!--握手类注册-->
+	<bean id="oasso" class="com.seeyon.ctp.portal.sso.SSOLoginContext">
+		<property name="name" value="oasso"/>
+		<property name="handshake">
+			<bean class="com.seeyon.apps.work.oasso.OASSOLoginImpl"/>
+		</property>
+	</bean>
+</beans>

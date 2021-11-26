@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    ##、	配置输出源，即输出到什么地方（控制台 or 文件）;
+    ##、文件设置最大存储容量${fileSize}，超过之后进行备份，备份最多备份${rollMax}个文件;
+    -->
+<Appenders>
+	<Console name="console" target="SYSTEM_OUT">
+		<PatternLayout pattern="${patternLayout}"/>
+	</Console>
+	<RollingFile name="ctp" fileName="${rootPath}/ctp.log" filePattern="${rootPath}/${fileDate}/ctp.log.${fileDate}.%i.log">
+		<Policies>
+			<OnStartupTriggeringPolicy/>
+			<SizeBasedTriggeringPolicy size="${fileSize}"/>
+			<TimeBasedTriggeringPolicy/>
+		</Policies>
+		<PatternLayout charset="UTF-8" pattern="${patternLayout}"/>
+		<DefaultRolloverStrategy max="${rollMax}" fileIndex="max"/>
+	</RollingFile>
+	<Failover name="Failover" primary="ctp">
+		<Failovers>
+			<AppenderRef ref="console"/>
+		</Failovers>
+	</Failover>
+	<RollingFile name="statistics" fileName="${rootPath}/statistics.log" filePattern="${rootPath}/${fileDate}/statistics.log.${fileDate}.%i.log">
+		<Policies>
+			<OnStartupTriggeringPolicy/>
+			<SizeBasedTriggeringPolicy size="${fileSize}"/>
+			<TimeBasedTriggeringPolicy/>
+		</Policies>
+		<PatternLayout charset="UTF-8" pattern="${patternLayout}"/>
+		<DefaultRolloverStrategy max="${rollMax}" fileIndex="max"/>
+	</RollingFile>
+	<RollingFile name="login" fileName="${rootPath}/login.log" filePattern="${rootPath}/${fileDate}/login.${fileDate}.%i.log">
+		<Policies>
+			<OnStartupTriggeringPolicy/>
+			<SizeBasedTriggeringPolicy size="${fileSize}"/>
+			<TimeBasedTriggeringPolicy/>
+		</Policies>
+		<PatternLayout charset="UTF-8" pattern="${patternLayout}"/>
+		<DefaultRolloverStrategy max="${rollMax}" fileIndex="max"/>
+	</RollingFile>
+	<RollingFile name="org" fileName="${rootPath}/org.log" filePattern="${rootPath}/${fileDate}/org.${fileDate}.%i.log">
+		<Policies>
+			<OnStartupTriggeringPolicy/>
+			<SizeBasedTriggeringPolicy size="${fileSize}"/>
+			<TimeBasedTriggeringPolicy/>
+		</Policies>
+		<PatternLayout charset="UTF-8" pattern="[%-5p]:%d{YYYY-MM-dd HH:mm:ss.SSS} [%t] %c{1}:%L - %msg%n"/>
+		<DefaultRolloverStrategy max="${rollMax}" fileIndex="max"/>
+	</RollingFile>
+	<RollingRandomAccessFile name="form" fileName="${rootPath}/form.log" filePattern="${rootPath}/${fileDate}/form.${fileDate}.%i.log">
+		<Policies>
+			<OnStartupTriggeringPolicy/>
+			<SizeBasedTriggeringPolicy size="${fileSize}"/>
+			<TimeBasedTriggeringPolicy/>
+		</Policies>
+		<PatternLayout charset="UTF-8" pattern="${patternLayout}"/>
+		<DefaultRolloverStrategy max="${rollMax}" fileIndex="max"/>
+	</RollingRandomAccessFile>
+	<RollingRandomAccessFile name="cap" fileName="${rootPath}/cap.log" filePattern="${rootPath}/${fileDate}/cap.${fileDate}.%i.log">
+		<Policies>
+			<OnStartupTriggeringPolicy/>
+			<SizeBasedTriggeringPolicy size="${fileSize}"/>
+			<TimeBasedTriggeringPolicy/>
+		</Policies>
+		<PatternLayout charset="UTF-8" pattern="${patternLayout}"/>
+		<DefaultRolloverStrategy max="${rollMax}" fileIndex="max"/>
+	</RollingRandomAccessFile>
+	<RollingFile name="workflow" fileName="${rootPath}/workflow.log" filePattern="${rootPath}/${fileDate}/workflow.${fileDate}.%i.log">
+		<Policies>
+			<OnStartupTriggeringPolicy/>
+			<SizeBasedTriggeringPolicy size="${fileSize}"/>
+			<TimeBasedTriggeringPolicy/>
+		</Policies>
+		<PatternLayout charset="UTF-8" pattern="${patternLayout}"/>
+		<DefaultRolloverStrategy max="${rollMax}" fileIndex="max"/>
+	</RollingFile>
+
+	<RollingFile name="cache" fileName="${rootPath}/cache.log" filePattern="${rootPath}/${fileDate}/cache.${fileDate}.%i.log">
+		<Policies>
+			<OnStartupTriggeringPolicy/>
+			<SizeBasedTriggeringPolicy size="${fileSize}"/>
+			<TimeBasedTriggeringPolicy/>
+		</Policies>
+		<PatternLayout charset="UTF-8" pattern="${patternLayout}"/>
+		<DefaultRolloverStrategy max="${rollMax}" fileIndex="max"/>
+	</RollingFile>
+
+	<RollingFile name="capability" fileName="${rootPath}/capability.log" filePattern="${rootPath}/${fileDate}/capability.${fileDate}.%i.log">
+		<Policies>
+			<OnStartupTriggeringPolicy/>
+			<SizeBasedTriggeringPolicy size="${fileSize}"/>
+			<TimeBasedTriggeringPolicy/>
+		</Policies>
+		<PatternLayout charset="UTF-8" pattern="%d{HH:mm:ss},%t,%m%n"/>
+		<DefaultRolloverStrategy max="${rollMax}" fileIndex="max"/>
+	</RollingFile>
+    <RollingFile name="rest" fileName="${rootPath}/rest.log" filePattern="${rootPath}/${fileDate}/rest.${fileDate}.%i.log">
+        <Policies>
+            <OnStartupTriggeringPolicy/>
+            <SizeBasedTriggeringPolicy size="${fileSize}"/>
+            <TimeBasedTriggeringPolicy/>
+        </Policies>
+        <PatternLayout charset="UTF-8" pattern="%d{HH:mm:ss},%t,%m%n"/>
+        <DefaultRolloverStrategy max="${rollMax}" fileIndex="max"/>
+    </RollingFile>	
+	<RollingFile name="scriptcompile" fileName="${rootPath}/scriptcompile.log" filePattern="${rootPath}/${fileDate}/scriptcompile.${fileDate}.%i.log">
+		<Policies>
+			<OnStartupTriggeringPolicy/>
+			<SizeBasedTriggeringPolicy size="${fileSize}"/>
+			<TimeBasedTriggeringPolicy/>
+		</Policies>
+		<PatternLayout charset="UTF-8" pattern="${patternLayout}"/>
+		<DefaultRolloverStrategy max="${rollMax}" fileIndex="max"/>
+	</RollingFile>
+	<RollingFile name="ajax" fileName="${rootPath}/ajax.log" filePattern="${rootPath}/${fileDate}/ajax.${fileDate}.%i.log">
+		<Policies>
+			<OnStartupTriggeringPolicy/>
+			<SizeBasedTriggeringPolicy size="${fileSize}"/>
+			<TimeBasedTriggeringPolicy/>
+		</Policies>
+		<PatternLayout charset="UTF-8" pattern="${patternLayout}"/>
+		<DefaultRolloverStrategy max="${rollMax}" fileIndex="max"/>
+	</RollingFile>
+	<RollingFile name="transaction" fileName="${rootPath}/transaction.log" filePattern="${rootPath}/${fileDate}/transaction.${fileDate}.%i.log">
+		<Policies>
+			<OnStartupTriggeringPolicy/>
+			<SizeBasedTriggeringPolicy size="${fileSize}"/>
+			<TimeBasedTriggeringPolicy/>
+		</Policies>
+		<PatternLayout charset="UTF-8" pattern="%d{HH:mm:ss},%t,%m%n"/>
+		<DefaultRolloverStrategy max="${rollMax}" fileIndex="max"/>
+	</RollingFile>
+	<RollingFile name="hibernate" fileName="${rootPath}/hibernate.log" filePattern="${rootPath}/${fileDate}/hibernate.${fileDate}.%i.log">
+		<Policies>
+			<OnStartupTriggeringPolicy/>
+			<SizeBasedTriggeringPolicy size="${fileSize}"/>
+			<TimeBasedTriggeringPolicy/>
+		</Policies>
+		<PatternLayout charset="UTF-8" pattern="${patternLayout}"/>
+		<DefaultRolloverStrategy max="${rollMax}" fileIndex="max"/>
+	</RollingFile>
+	<RollingFile name="sql" fileName="${rootPath}/sql.log" filePattern="${rootPath}/${fileDate}/sql.${fileDate}.%i.log">
+		<Policies>
+			<OnStartupTriggeringPolicy/>
+			<SizeBasedTriggeringPolicy size="${fileSize}"/>
+			<TimeBasedTriggeringPolicy/>
+		</Policies>
+		<PatternLayout charset="UTF-8" pattern="${patternLayout}"/>
+		<DefaultRolloverStrategy max="${rollMax}" fileIndex="max"/>
+	</RollingFile>
+	<RollingFile name="sqlmonitor" fileName="${rootPath}/sqlmonitor.log" filePattern="${rootPath}/${fileDate}/sqlmonitor.${fileDate}.%i.log">
+		<Policies>
+			<OnStartupTriggeringPolicy/>
+			<SizeBasedTriggeringPolicy size="${fileSize}"/>
+			<TimeBasedTriggeringPolicy/>
+		</Policies>
+		<PatternLayout charset="UTF-8" pattern="${patternLayout}"/>
+		<DefaultRolloverStrategy max="${rollMax}" fileIndex="max"/>
+	</RollingFile>
+	<RollingFile name="spring" fileName="${rootPath}/spring.log" filePattern="${rootPath}/${fileDate}/spring.${fileDate}.%i.log">
+		<Policies>
+			<OnStartupTriggeringPolicy/>
+			<SizeBasedTriggeringPolicy size="${fileSize}"/>
+			<TimeBasedTriggeringPolicy/>
+		</Policies>
+		<PatternLayout charset="UTF-8" pattern="${patternLayout}"/>
+		<DefaultRolloverStrategy max="${rollMax}" fileIndex="max"/>
+	</RollingFile>
+	<RollingFile name="quartz" fileName="${rootPath}/quartz.log" filePattern="${rootPath}/${fileDate}/quartz.${fileDate}.%i.log">
+		<Policies>
+			<OnStartupTriggeringPolicy/>
+			<SizeBasedTriggeringPolicy size="${fileSize}"/>
+			<TimeBasedTriggeringPolicy/>
+		</Policies>
+		<PatternLayout charset="UTF-8" pattern="${patternLayout}"/>
+		<DefaultRolloverStrategy max="${rollMax}" fileIndex="max"/>
+	</RollingFile>
+	<RollingFile name="cluster" fileName="${rootPath}/cluster.log" filePattern="${rootPath}/${fileDate}/cluster.${fileDate}.%i.log">
+		<Policies>
+			<OnStartupTriggeringPolicy/>
+			<SizeBasedTriggeringPolicy size="${fileSize}"/>
+			<TimeBasedTriggeringPolicy/>
+		</Policies>
+		<PatternLayout charset="UTF-8" pattern="${patternLayout}"/>
+		<DefaultRolloverStrategy max="${rollMax}" fileIndex="max"/>
+	</RollingFile>
+	<RollingFile name="dubbo" fileName="${rootPath}/dubbo.log" filePattern="${rootPath}/${fileDate}/dubbo.${fileDate}.%i.log">
+		<Policies>
+			<OnStartupTriggeringPolicy/>
+			<SizeBasedTriggeringPolicy size="${fileSize}"/>
+			<TimeBasedTriggeringPolicy/>
+		</Policies>
+		<PatternLayout charset="UTF-8" pattern="${patternLayout}"/>
+		<DefaultRolloverStrategy max="${rollMax}" fileIndex="max"/>
+	</RollingFile>
+	<RollingFile name="security" fileName="${rootPath}/security.log" filePattern="${rootPath}/${fileDate}/security.${fileDate}.%i.log">
+		<PatternLayout pattern="%d{HH:mm:ss} [%t] %5p %c{1}:%L - %m%n"/>
+		<Policies>
+			<OnStartupTriggeringPolicy/>
+			<SizeBasedTriggeringPolicy size="${fileSize}"/>
+			<TimeBasedTriggeringPolicy/>
+		</Policies>
+		<DefaultRolloverStrategy max="${rollMax}"/>
+	</RollingFile>
+	<RollingFile name="flowLog" fileName="${rootPath}/flowLog.log" filePattern="${rootPath}/${fileDate}/flowLog.${fileDate}.%i.log">
+		<Policies>
+			<OnStartupTriggeringPolicy/>
+			<SizeBasedTriggeringPolicy size="${fileSize}"/>
+			<TimeBasedTriggeringPolicy/>
+		</Policies>
+		<PatternLayout charset="UTF-8" pattern="${patternLayout}"/>
+		<DefaultRolloverStrategy max="${rollMax}" fileIndex="max"/>
+	</RollingFile>
+	<RollingFile name="ddos" fileName="${rootPath}/ddos.log" filePattern="${rootPath}/${fileDate}/ddos.${fileDate}.%i.log">
+		<Policies>
+			<OnStartupTriggeringPolicy/>
+			<SizeBasedTriggeringPolicy size="${fileSize}"/>
+			<TimeBasedTriggeringPolicy/>
+		</Policies>
+		<PatternLayout charset="UTF-8" pattern="${patternLayout}"/>
+		<DefaultRolloverStrategy max="${rollMax}" fileIndex="max"/>
+	</RollingFile>
+	<RollingFile name="ddosError" fileName="${rootPath}/ddosError.log" filePattern="${rootPath}/${fileDate}/ddosError.${fileDate}.%i.log">
+		<Policies>
+			<OnStartupTriggeringPolicy/>
+			<SizeBasedTriggeringPolicy size="${fileSize}"/>
+			<TimeBasedTriggeringPolicy/>
+		</Policies>
+		<PatternLayout charset="UTF-8" pattern="${patternLayout}"/>
+		<DefaultRolloverStrategy max="${rollMax}" fileIndex="max"/>
+	</RollingFile>
+	<RollingFile name="uc" fileName="${rootPath}/uc.log" filePattern="${rootPath}/${fileDate}/uc.${fileDate}.%i.log">
+		<Policies>
+			<OnStartupTriggeringPolicy/>
+			<SizeBasedTriggeringPolicy size="${fileSize}"/>
+			<TimeBasedTriggeringPolicy/>
+		</Policies>
+		<PatternLayout charset="UTF-8" pattern="${patternLayout}"/>
+		<DefaultRolloverStrategy max="${rollMax}" fileIndex="max"/>
+	</RollingFile>
+	<RollingFile name="zx" fileName="${rootPath}/zx.log" filePattern="${rootPath}/${fileDate}/zx.${fileDate}.%i.log">
+		<Policies>
+			<OnStartupTriggeringPolicy/>
+			<SizeBasedTriggeringPolicy size="${fileSize}"/>
+			<TimeBasedTriggeringPolicy/>
+		</Policies>
+		<PatternLayout charset="UTF-8" pattern="${patternLayout}"/>
+		<DefaultRolloverStrategy max="${rollMax}" fileIndex="max"/>
+	</RollingFile>
+	<RollingFile name="dee" fileName="${rootPath}/dee.log" filePattern="${rootPath}/${fileDate}/dee.${fileDate}.%i.log">
+		<PatternLayout charset="UTF-8"  pattern="%d{HH:mm:ss} [%t] %5p %c{1}:%L - %m%n"/>
+		<Policies>
+			<OnStartupTriggeringPolicy/>
+			<SizeBasedTriggeringPolicy size="${fileSize}"/>
+			<TimeBasedTriggeringPolicy/>
+		</Policies>
+		<DefaultRolloverStrategy max="${rollMax}"/>
+	</RollingFile>
+	<RollingFile name="index" fileName="${rootPath}/index.log" filePattern="${rootPath}/${fileDate}/index.log.${fileDate}.%i.log">
+		<Policies>
+			<OnStartupTriggeringPolicy/>
+			<SizeBasedTriggeringPolicy size="${fileSize}"/>
+			<TimeBasedTriggeringPolicy/>
+		</Policies>
+		<PatternLayout charset="UTF-8" pattern="${patternLayout}"/>
+		<DefaultRolloverStrategy max="${rollMax}" fileIndex="max"/>
+	</RollingFile>	
+	<RollingFile name="cip" fileName="${rootPath}/cip.log" filePattern="${rootPath}/${fileDate}/cip.${fileDate}.%i.log">
+		<Policies>
+			<OnStartupTriggeringPolicy/>
+			<SizeBasedTriggeringPolicy size="${fileSize}"/>
+			<TimeBasedTriggeringPolicy/>
+		</Policies>
+		<PatternLayout charset="UTF-8" pattern="${patternLayout}"/>
+		<DefaultRolloverStrategy max="${rollMax}" fileIndex="max"/>
+	</RollingFile>
+	<RollingFile name="captrace" fileName="${rootPath}/cap_trace/trace.log" filePattern="${rootPath}/cap_trace/${fileDate}/trace.${fileDate}.%i.log">
+		<Policies>
+			<OnStartupTriggeringPolicy/>
+			<SizeBasedTriggeringPolicy size="${fileSize}"/>
+			<TimeBasedTriggeringPolicy/>
+		</Policies>
+		<PatternLayout charset="UTF-8" pattern="${patternLayout}"/>
+		<DefaultRolloverStrategy max="${rollMax}" fileIndex="max"/>
+	</RollingFile>
+	<RollingFile name="fe-network" fileName="${rootPath}/fe-network.log" filePattern="${rootPath}/${fileDate}/fe-network.${fileDate}.%i.log">
+		<Policies>
+			<OnStartupTriggeringPolicy/>
+			<SizeBasedTriggeringPolicy size="${fileSize}"/>
+			<TimeBasedTriggeringPolicy/>
+		</Policies>
+		<PatternLayout charset="UTF-8" pattern="%d{HH:mm:ss}  %5p: - %m%n"/>
+		<DefaultRolloverStrategy max="${rollMax}" fileIndex="max"/>
+	</RollingFile>
+	<RollingFile name="fe-caught" fileName="${rootPath}/fe-caught.log" filePattern="${rootPath}/${fileDate}/fe-caught.${fileDate}.%i.log">
+		<Policies>
+			<OnStartupTriggeringPolicy/>
+			<SizeBasedTriggeringPolicy size="${fileSize}"/>
+			<TimeBasedTriggeringPolicy/>
+		</Policies>
+		<PatternLayout charset="UTF-8" pattern="%d{HH:mm:ss}  %5p: - %m%n"/>
+		<DefaultRolloverStrategy max="${rollMax}" fileIndex="max"/>
+	</RollingFile>
+	<RollingFile name="fe-resource" fileName="${rootPath}/fe-resource.log" filePattern="${rootPath}/${fileDate}/fe-resource.${fileDate}.%i.log">
+	<Policies>
+		<OnStartupTriggeringPolicy/>
+		<SizeBasedTriggeringPolicy size="${fileSize}"/>
+		<TimeBasedTriggeringPolicy/>
+	</Policies>
+	<PatternLayout charset="UTF-8" pattern="%d{HH:mm:ss}  %5p: - %m%n"/>
+	<DefaultRolloverStrategy max="${rollMax}" fileIndex="max"/>
+	</RollingFile>
+	<RollingFile name="fe-report" fileName="${rootPath}/fe-report.log" filePattern="${rootPath}/${fileDate}/fe-report.${fileDate}.%i.log">
+		<Policies>
+			<OnStartupTriggeringPolicy/>
+			<SizeBasedTriggeringPolicy size="${fileSize}"/>
+			<TimeBasedTriggeringPolicy/>
+		</Policies>
+		<PatternLayout charset="UTF-8" pattern="%d{HH:mm:ss}  %5p: - %m%n"/>
+		<DefaultRolloverStrategy max="${rollMax}" fileIndex="max"/>
+	</RollingFile>
+	<RollingFile name="fe-unknown" fileName="${rootPath}/fe-unknown.log" filePattern="${rootPath}/${fileDate}/fe-unknown.${fileDate}.%i.log">
+		<Policies>
+			<OnStartupTriggeringPolicy/>
+			<SizeBasedTriggeringPolicy size="${fileSize}"/>
+			<TimeBasedTriggeringPolicy/>
+		</Policies>
+		<PatternLayout charset="UTF-8" pattern="%d{HH:mm:ss}  %5p: - %m%n"/>
+		<DefaultRolloverStrategy max="${rollMax}" fileIndex="max"/>
+	</RollingFile>
+	<RollingFile name="ocip" fileName="${rootPath}/ocip/ocip.log" filePattern="${rootPath}/${fileDate}/ocip/ocip.log.${fileDate}.%i.log">
+		<Policies>
+			<OnStartupTriggeringPolicy/>
+			<SizeBasedTriggeringPolicy size="${fileSize}"/>
+			<TimeBasedTriggeringPolicy/>
+		</Policies>
+		<PatternLayout charset="UTF-8" pattern="${patternLayout}"/>
+		<DefaultRolloverStrategy max="${rollMax}" fileIndex="max"/>
+	</RollingFile>
+	<RollingFile name="dataAgent" fileName="${rootPath}/ocip/dataAgent.log" filePattern="${rootPath}/${fileDate}/ocip/dataAgent.log.${fileDate}.%i.log">
+		<Policies>
+			<OnStartupTriggeringPolicy/>
+			<SizeBasedTriggeringPolicy size="${fileSize}"/>
+			<TimeBasedTriggeringPolicy/>
+		</Policies>
+		<PatternLayout charset="UTF-8" pattern="${patternLayout}"/>
+		<DefaultRolloverStrategy max="${rollMax}" fileIndex="max"/>
+	</RollingFile>
+	<RollingFile name="tenant" fileName="${rootPath}/tenant.log" filePattern="${rootPath}/${fileDate}/tenantMonitor.${fileDate}.%i.log">
+		<Policies>
+			<OnStartupTriggeringPolicy/>
+			<SizeBasedTriggeringPolicy size="${fileSize}"/>
+			<TimeBasedTriggeringPolicy/>
+		</Policies>
+		<PatternLayout charset="UTF-8" pattern="${patternLayout}"/>
+		<DefaultRolloverStrategy max="${rollMax}" fileIndex="max"/>
+	</RollingFile>
+	<RollingFile name="performance" fileName="${rootPath}/performance.log" filePattern="${rootPath}/${fileDate}/performance.${fileDate}.%i.log">
+		<Policies>
+			<OnStartupTriggeringPolicy/>
+			<SizeBasedTriggeringPolicy size="${fileSize}"/>
+			<TimeBasedTriggeringPolicy/>
+		</Policies>
+		<PatternLayout charset="UTF-8" pattern="${patternLayout}"/>
+		<DefaultRolloverStrategy max="${rollMax}" fileIndex="max"/>
+	</RollingFile>
+	<RollingFile name="redisTrace" fileName="${rootPath}/redisTrace.log" filePattern="${rootPath}/trace/${fileDate}/redisTrace.${fileDate}.%i.log">
+		<Policies>
+			<OnStartupTriggeringPolicy/>
+			<SizeBasedTriggeringPolicy size="${fileSize}"/>
+			<TimeBasedTriggeringPolicy/>
+		</Policies>
+		<PatternLayout charset="UTF-8" pattern="${patternLayout}"/>
+		<DefaultRolloverStrategy max="${rollMax}" fileIndex="max"/>
+	</RollingFile>
+	<RollingFile name="failover" fileName="${rootPath}/failover.log" filePattern="${rootPath}/trace/${fileDate}/failover.${fileDate}.%i.log">
+		<Policies>
+			<OnStartupTriggeringPolicy/>
+			<SizeBasedTriggeringPolicy size="${fileSize}"/>
+			<TimeBasedTriggeringPolicy/>
+		</Policies>
+		<PatternLayout charset="UTF-8" pattern="${patternLayout}"/>
+		<DefaultRolloverStrategy max="${rollMax}" fileIndex="max"/>
+	</RollingFile>
+
+
+	<RollingFile name="LaoLiDeLog" fileName="${rootPath}/LaoLiDeLog.log" filePattern="${rootPath}/trace/${fileDate}/LaoLiDeLog.${fileDate}.%i.log">
+		<Policies>
+			<OnStartupTriggeringPolicy/>
+			<SizeBasedTriggeringPolicy size="${fileSize}"/>
+			<TimeBasedTriggeringPolicy/>
+		</Policies>
+		<PatternLayout charset="UTF-8" pattern="${patternLayout}"/>
+		<DefaultRolloverStrategy max="${rollMax}" fileIndex="max"/>
+	</RollingFile>
+</Appenders>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ctpConfig>
+    <demandConfiguration>
+        <!--需求6-1配置-->
+        <contractFileFlowChart mark="{VE}" desc="●合同档案————流程表单模板编号">1001011</contractFileFlowChart>
+        <bottomSheetOfContractFile mark="{VE}" desc="●合同档案————监管合同档案模板编号">1001012</bottomSheetOfContractFile>
+        <paymentFlowSheet mark="{VE}" desc="●付款流程表———————模板编号">1001013</paymentFlowSheet>
+        <bottomSheetOfContractFile1 mark="{VE}" desc="●合同档案底表———————模板编号">1001014</bottomSheetOfContractFile1>
+        <restAccount mark="{VE}" desc="●rest账号">rest</restAccount>
+        <restPassword mark="{VE}" desc="●rest密码">c9e0e0a7-a7a4-45cb-97fe-3f2939481ee4</restPassword>
+        <getTokenUrl mark="{VE}" desc="●获取token链接">http://localhost:80/seeyon/rest/token</getTokenUrl>
+        <signInUrl mark="{VE}" desc="●单点登录controller">http://localhost:80/seeyon/SignInController.do</signInUrl>
+        <nativePostRestUrl mark="{VE}" desc="●本机rest接口insert">http://localhost:80/seeyon/rest/ContractFormResource/insert</nativePostRestUrl>
+        <nativePostRestUrlCtrls mark="{VE}" desc="●本机rest接口定时任务">http://localhost:80/seeyon/rest/TimerRest/toTimer</nativePostRestUrlCtrls>
+        <deptManager mark="{VE}" desc="●部门经理">部门经理</deptManager>
+        <webservice mark="{VE}" desc="webservice接口地址">http://127.0.0.1:8081/seeyon/services/payWebServiceImpl?wsdl</webservice>
+        <downloadfile mark="{VE}" desc="文件下载的地址">D:\A8download</downloadfile>
+        <ftpIP mark="{VE}" desc="虚拟机Ftp地址">192.168.174.200</ftpIP>
+        <ftpAccount mark="{VE}" desc="虚拟机登录账号">FtpService</ftpAccount>
+        <ftpPassWrod mark="{VE}" desc="虚拟机登录密码">LDzjdh19960106</ftpPassWrod>
+    </demandConfiguration>
+</ctpConfig>

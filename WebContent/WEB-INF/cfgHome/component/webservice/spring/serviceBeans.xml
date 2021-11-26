@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING/DTD BEAN/EN"  "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans default-autowire="byName">
+      <!--  -->
+      <bean id="affairService" class="com.seeyon.v3x.services.affair.impl.AffairServiceImpl" />
+    <bean id="affairFactory" class="com.seeyon.v3x.services.affair.impl.AffairFactoryImpl" />
+    
+    <bean id="messageService" class="com.seeyon.v3x.services.message.impl.MessageServiceImpl" />
+    <bean id="messageFactory" class="com.seeyon.v3x.services.message.impl.MessageFactoryImpl"/>
+      <bean id="documentService" class="com.seeyon.v3x.services.document.impl.DocumentServiceImpl" />
+    <bean id="documentFactory" class="com.seeyon.v3x.services.document.impl.DocumentFactoryImpl" />
+      <bean id="formService" class="com.seeyon.v3x.services.form.impl.FormServiceImpl" />
+    <bean id="formFactory" class="com.seeyon.v3x.services.form.impl.FormFactoryImpl" />
+
+     <bean id="authorityService" class="com.seeyon.v3x.services.impl.AuthorityServiceImpl" />
+    <bean name="/uploadService.do" class="com.seeyon.ctp.services.FileUploadService"/>
+	<bean id="flowFactory" class="com.seeyon.v3x.services.flow.impl.FlowFactoryImpl" />
+    <bean id="flowService" class="com.seeyon.v3x.services.flow.impl.FlowServiceImpl" />
+    <bean id="BPMService" class="com.seeyon.v3x.services.flow.impl.FlowServiceImpl"/>
+    <bean id="organizationDataService" class="com.seeyon.v3x.services.organization.impl.OrganizationDataServiceImpl" />
+    <bean id="accountService" class="com.seeyon.v3x.services.organization.impl.AccountServiceImpl"/>
+   <bean id="enumService" class="com.seeyon.v3x.services.enums.impl.EnumServiceImpl"/>
+    <bean id="enumFactory" class="com.seeyon.v3x.services.enums.impl.EnumFactoryImpl"/>
+     <bean id="queryFormByDate" class="com.seeyon.v3x.services.flow.impl.QueryFormByDate" >
+      <property name="sessionFactory" ref="sessionFactory" />
+      </bean>
+      <bean id="personService" class="com.seeyon.v3x.services.organization.impl.PersonServiceImpl"/>
+          <bean id="organizationManagerFactory"
+        class="com.seeyon.v3x.services.organization.OrganizationManagerFactory">
+        <property name="accountManager" ref="v3xaccountManager"/>
+        <property name="departmentManager" ref="v3xdepartmentManager"/>
+        <property name="ocupationManager" ref="ocupationManager"/>
+        <property name="personManager" ref="personManager"/>
+    </bean>
+    <bean id="personManager" class="com.seeyon.v3x.services.organization.impl.PersonManagerImpl"/>
+     <bean id="departmentService" class="com.seeyon.v3x.services.organization.impl.DepartmentServiceImpl"/>
+    <bean id="ocupationService" class="com.seeyon.v3x.services.organization.impl.OcupationServiceImpl"/>
+    <bean id="otypeService" class="com.seeyon.v3x.services.organization.impl.OTypeServiceImpl"/>
+    <bean id="ocupationManager" class="com.seeyon.v3x.services.organization.impl.OcupationManagerImpl"/>
+    <bean id="v3xaccountManager" class="com.seeyon.v3x.services.organization.impl.AccountManagerImpl"/>
+    <bean id="v3xdepartmentManager" class="com.seeyon.v3x.services.organization.impl.DepartmentManagerImpl"/>
+
+    <bean id="payWebServiceImpl" class="com.seeyon.apps.services.webService.impl.PayWebServiceImpl" />
+</beans>

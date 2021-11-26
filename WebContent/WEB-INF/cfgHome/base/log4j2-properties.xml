@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--配置一些全局属性供下面引用-->
+<Properties>
+	<Property name="rootPath">${sys:ApplicationRoot}/../../logs_sy</Property>
+	<Property name="otherPath">${sys:ApplicationRoot}/</Property>
+	<Property name="fileDate">%d{yyyy-MM-dd}</Property>
+	<!--单个日志文件大小-->
+	<Property name="fileSize">10M</Property>
+	<!--最多保存的文件个数-->
+	<Property name="rollMax">99999</Property>
+	<Property name="patternLayout">%d{HH:mm:ss} [%t] %5p: %c{1}:%L - %m%n</Property>
+</Properties>

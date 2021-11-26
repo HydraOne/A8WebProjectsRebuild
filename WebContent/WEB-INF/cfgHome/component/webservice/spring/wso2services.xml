@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING/DTD BEAN/EN"  "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+    <import resource="axis2Config.xml" />
+    <bean id="services" class="org.wso2.spring.ws.WebServices">
+        <property name="services">
+            <list>
+                <bean id="authorityWebService" class="org.wso2.spring.ws.SpringWebService">
+                    <property name="serviceBean" ref="authorityService"/>
+                    <property name="serviceName" value="authorityService"/>
+                    <property name="serviceDescription" value="This is the test webservice for Spring/Axis2 Integration"/>
+                    <property name="targetNameSpace" value="www.seeyon.com"/>
+                    <property name="excludeOperations">
+                        <list>
+                    </list>
+                    </property>
+                    <property name="sessionScope" value="request"/>
+                    <property name="modules">
+                        <list>
+                    </list>
+                    </property>
+                </bean>
+                <bean id="messageWebService" class="org.wso2.spring.ws.SpringWebService">
+                    <property name="serviceBean" ref="messageService"/>
+                    <property name="serviceName" value="messageService"/>
+                    <property name="serviceDescription" value="This is the test webservice for Spring/Axis2 Integration"/>
+                    <property name="targetNameSpace" value="www.seeyon.com"/>
+                    <property name="excludeOperations">
+                        <list>
+                    </list>
+                    </property>
+                    <property name="sessionScope" value="request"/>
+                    <property name="modules">
+                        <list>
+                    </list>
+                    </property>
+                </bean>
+                <bean id="BPMWebService" class="org.wso2.spring.ws.SpringWebService">
+                    <property name="serviceBean" ref="BPMService"/>
+                    <property name="serviceName" value="BPMService"/>
+                    <property name="serviceDescription" value="This is the test webservice for Spring/Axis2 Integration"/>
+                    <property name="targetNameSpace" value="www.seeyon.com"/>
+                    <property name="excludeOperations">
+                        <list>
+                    </list>
+                    </property>
+                    <property name="sessionScope" value="request"/>
+                    <property name="modules">
+                        <list>
+                    </list>
+                    </property>
+                </bean>
+                <bean id="formWebService" class="org.wso2.spring.ws.SpringWebService">
+                    <property name="serviceBean" ref="formService"/>
+                    <property name="serviceName" value="formService"/>
+                    <property name="serviceDescription" value="This is the test webservice for Spring/Axis2 Integration"/>
+                    <property name="targetNameSpace" value="www.seeyon.com"/>
+                    <property name="excludeOperations">
+                        <list>
+                    </list>
+                    </property>
+                    <property name="sessionScope" value="request"/>
+                    <property name="modules">
+                        <list>
+                    </list>
+                    </property>
+                </bean>
+                <bean id="flowWebService" class="org.wso2.spring.ws.SpringWebService">
+                    <property name="serviceBean" ref="flowService"/>
+                    <property name="serviceName" value="flowService"/>
+                    <property name="serviceDescription" value="This is the test webservice for Spring/Axis2 Integration"/>
+                    <property name="targetNameSpace" value="www.seeyon.com"/>
+                    <property name="excludeOperations">
+                        <list>
+                    </list>
+                    </property>
+                    <property name="sessionScope" value="request"/>
+                    <property name="modules">
+                        <list>
+                    </list>
+                    </property>
+                </bean>
+                <bean id="documentWebService" class="org.wso2.spring.ws.SpringWebService">
+                    <property name="serviceBean" ref="documentService"/>
+                    <property name="serviceName" value="documentService"/>
+                    <property name="serviceDescription" value="This is the test webservice for Spring/Axis2 Integration"/>
+                    <property name="targetNameSpace" value="www.seeyon.com"/>
+                    <property name="excludeOperations">
+                        <list>
+                    </list>
+                    </property>
+                    <property name="sessionScope" value="request"/>
+                    <property name="modules">
+                        <list>
+                    </list>
+                    </property>
+                </bean>
+               <bean id="organizationDataWebService" class="org.wso2.spring.ws.SpringWebService">
+                    <property name="serviceBean" ref="organizationDataService"/>
+                    <property name="serviceName" value="organizationDataService"/>
+                    <property name="serviceDescription" value="This is the test webservice for Spring/Axis2 Integration"/>
+                    <property name="targetNameSpace" value="www.seeyon.com"/>
+                    <property name="excludeOperations">
+                        <list>
+                    </list>
+                    </property>
+                    <property name="sessionScope" value="request"/>
+                    <property name="modules">
+                        <list>
+                    </list>
+                    </property>
+                </bean>
+                <bean id="accountWebService" class="org.wso2.spring.ws.SpringWebService">
+                    <property name="serviceBean" ref="accountService"/>
+                    <property name="serviceName" value="accountService"/>
+                    <property name="serviceDescription" value="This is the test webservice for Spring/Axis2 Integration"/>
+                    <property name="targetNameSpace" value="www.seeyon.com"/>
+                    <property name="excludeOperations">
+                        <list>
+                    </list>
+                    </property>
+                    <property name="sessionScope" value="request"/>
+                    <property name="modules">
+                        <list>
+                    </list>
+                    </property>
+                </bean>
+                <bean id="enumWebService" class="org.wso2.spring.ws.SpringWebService">
+                    <property name="serviceBean" ref="enumService"/>
+                    <property name="serviceName" value="enumService"/>
+                    <property name="serviceDescription" value="This is the test webservice for Spring/Axis2 Integration"/>
+                    <property name="targetNameSpace" value="www.seeyon.com"/>
+                    <property name="excludeOperations">
+                        <list>
+                        </list>
+                    </property>
+                    <property name="sessionScope" value="request"/>
+                    <property name="modules">
+                      <list>
+                      </list>
+                    </property>
+                </bean> 
+                <bean id="personWebService" class="org.wso2.spring.ws.SpringWebService">
+                    <property name="serviceBean" ref="personService"/>
+                    <property name="serviceName" value="personService"/>
+                    <property name="serviceDescription" value="This is the test webservice for Spring/Axis2 Integration"/>
+                    <property name="targetNameSpace" value="www.seeyon.com"/>
+                    <property name="excludeOperations">
+                        <list>
+                    </list>
+                    </property>
+                    <property name="sessionScope" value="request"/>
+                    <property name="modules">
+                        <list>
+                    </list>
+                    </property>
+                </bean> 
+                   <bean id="departmentWebService" class="org.wso2.spring.ws.SpringWebService">
+                    <property name="serviceBean" ref="departmentService"/>
+                    <property name="serviceName" value="departmentService"/>
+                    <property name="serviceDescription" value="This is the test webservice for Spring/Axis2 Integration"/>
+                    <property name="targetNameSpace" value="www.seeyon.com"/>
+                    <property name="excludeOperations">
+                        <list>
+                    </list>
+                    </property>
+                    <property name="sessionScope" value="request"/>
+                    <property name="modules">
+                        <list>
+                    </list>
+                    </property>
+                </bean>
+                <bean id="ocupationWebService" class="org.wso2.spring.ws.SpringWebService">
+                    <property name="serviceBean" ref="ocupationService"/>
+                    <property name="serviceName" value="ocupationService"/>
+                    <property name="serviceDescription" value="This is the test webservice for Spring/Axis2 Integration"/>
+                    <property name="targetNameSpace" value="www.seeyon.com"/>
+                    <property name="excludeOperations">
+                        <list>
+                    </list>
+                    </property>
+                    <property name="sessionScope" value="request"/>
+                    <property name="modules">
+                        <list>
+                    </list>
+                    </property>
+                </bean>                
+                <bean id="otypeWebService" class="org.wso2.spring.ws.SpringWebService">
+                    <property name="serviceBean" ref="otypeService"/>
+                    <property name="serviceName" value="otypeService"/>
+                    <property name="serviceDescription" value="This is the test webservice for Spring/Axis2 Integration"/>
+                    <property name="targetNameSpace" value="www.seeyon.com"/>
+                    <property name="excludeOperations">
+                        <list>
+                    </list>
+                    </property>
+                    <property name="sessionScope" value="request"/>
+                    <property name="modules">
+                        <list>
+                    </list>
+                    </property>
+                </bean>
+                    <bean id="affairWebService" class="org.wso2.spring.ws.SpringWebService">
+                    <property name="serviceBean" ref="affairService"/>
+                    <property name="serviceName" value="affairService"/>
+                    <property name="serviceDescription" value="This is the test webservice for Spring/Axis2 Integration"/>
+                    <property name="targetNameSpace" value="www.seeyon.com"/>
+                    <property name="excludeOperations">
+                        <list>
+                    </list>
+                    </property>
+                    <property name="sessionScope" value="request"/>
+                    <property name="modules">
+                        <list>
+                    </list>
+                    </property>
+                </bean>
+
+				<bean id="payWebServiceImpl" class="org.wso2.spring.ws.SpringWebService">
+                    <property name="serviceBean" ref="payWebServiceImpl"/>
+                    <property name="serviceName" value="payWebServiceImpl"/>
+                    <property name="serviceDescription" value="This is the test webservice for Spring/Axis2 Integration"/>
+                    <property name="targetNameSpace" value="www.seeyon.com"/>
+                    <property name="excludeOperations">
+                        <list>
+                        </list>
+                    </property>
+                    <property name="sessionScope" value="request"/>
+                    <property name="modules">
+                        <list>
+                        </list>
+                    </property>
+                </bean>
+            </list>
+        </property>
+    </bean>
+</beans>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http:springframework.org.dtd/spring-beans.dtd">
+<beans default-autowire="byName">
+    <!--work01-->
+    <bean id="ContractManagementMapperImpl" class="com.seeyon.apps.work.work01.dao.impl.ContractManagementMapperImpl"/>
+    <!--work02-->
+    <bean id="FormTimeViewMapperImpl" class="com.seeyon.apps.work.work02.dao.impl.FormTimeViewMapperImpl"/>
+    <!--work03-->
+    <bean id="ContractSupervisionColumnMapperImpl" class="com.seeyon.apps.work.work03.dao.impl.ContractSupervisionColumnMapperImpl"/>
+    <!--work05-->
+    <bean id="TimerDaoImpl" class="com.seeyon.apps.work.work05.dao.impl.TimerDaoImpl"/>
+    <!--work06-->
+    <bean id="payWebServiceDaoImpl" class="com.seeyon.apps.work.work06.dao.impl.PayWebServiceDaoImpl"/>
+    <!--document-->
+    <bean id="MyFileDaoImpl"  class="com.seeyon.apps.work.document.dao.impl.MyFileDaoImpl"/>
+    <bean id="FtpDaoImpl" class="com.seeyon.apps.work.document.dao.impl.FtpDaoImpl"/>
+    <bean id="QuartzDaoImpl" class="com.seeyon.apps.work.document.dao.impl.QuartzDaoImpl"/>
+    <bean id="edocOpinionDaoImpl" class="com.seeyon.apps.work.document.dao.impl.EdocOpinionDaoImpl"/>
+</beans>

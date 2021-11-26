@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http:springframework.org.dtd/spring-beans.dtd">
+<beans default-autowire="byName">
+    <bean id="colPermissionOperDefinition" class="com.seeyon.ctp.common.permission.bo.PermissionOperDefinition">
+        <property name="app" value="1"/>
+        <property name="operations">
+            <map>
+                <!-- 基本操作 开始 -->
+                <entry key="col_basic_action">
+                    <list>
+                        <props>
+                            <!-- 跟踪 -->
+                            <prop key="key">Track</prop>
+                            <prop key="label">permission.operation.Track</prop>
+                            <prop key="type">4</prop>
+
+                        </props>
+                        <props>
+                            <!-- 暂存待办 -->
+                            <prop key="key">Comment</prop>
+                            <prop key="label">common.save.and.pause.flow</prop>
+                            <prop key="type">2</prop>
+                        </props>
+                        <props>
+                            <!-- 提交 -->
+                            <prop key="key">ContinueSubmit</prop>
+                            <prop key="label">common.button.submit.label</prop>
+                            <prop key="type">2</prop>
+                        </props>
+                        <props>
+                            <!-- 处理后归档 -->
+                            <prop key="key">Archive</prop>
+                            <prop key="label">permission.operation.Archive</prop>
+                            <prop key="type">4</prop>
+                        </props>
+                        <props>
+                            <!-- 意见 -->
+                            <prop key="key">Opinion</prop>
+                            <prop key="label">common.opinion.label</prop>
+                            <prop key="type">3</prop>
+                        </props>
+                        <props>
+                            <!-- 常用语 -->
+                            <prop key="key">CommonPhrase</prop>
+                            <prop key="label">common.common.language.label</prop>
+                            <prop key="type">3</prop>
+                        </props>
+                        <props>
+                            <!-- 上传附件 -->
+                            <prop key="key">UploadAttachment</prop>
+                            <prop key="label">common.upload.attachment.label</prop>
+                            <prop key="type">3</prop>
+                        </props>
+                        <props>
+                            <!-- 打印 -->
+                            <prop key="key">Print</prop>
+                            <prop key="label">common.toolbar.print.label</prop>
+                            <prop key="type">4</prop>
+                        </props>
+                        <props>
+                            <!-- 关联文档 -->
+                            <prop key="key">UploadRelDoc</prop>
+                            <prop key="label">common.toolbar.insert.mydocument.label</prop>
+                            <prop key="type">3</prop>
+                        </props>
+                        <props>
+                            <!-- 编辑流程 -->
+                            <prop key="key">EditWorkFlow</prop>
+                            <prop key="label">common.design.workflow.label</prop>
+                            <prop key="type">4</prop>
+                        </props>
+                        <props>
+                            <!-- 归档-->
+                            <prop key="key">Pigeonhole</prop>
+                            <prop key="label">common.toolbar.pigeonhole.label</prop>
+                            <prop key="type">4</prop>
+                        </props>
+                        <props>
+                            <!-- 重复发起-->
+                            <prop key="key">RepeatSend</prop>
+                            <prop key="label">common.toolbar.resend.label</prop>
+                            <prop key="type">4</prop>
+                        </props>
+                        <props>
+                            <!-- 应用磁贴-->
+                            <prop key="key">AppTile</prop>
+                            <prop key="label">permission.operation.AppTile</prop>
+                            <prop key="type">1</prop>
+                        </props>
+                    </list>
+                </entry>
+                <!-- 基本操作 结束 -->
+
+                <!-- 常用、高级操作 开始 -->
+                <entry key="node_control_action">
+                    <list>
+                        <props>
+                            <!-- 转发 -->
+                            <prop key="key">Forward</prop>
+                            <prop key="label">common.toolbar.transmit.label</prop>
+                            <prop key="type">1</prop>
+                            <prop key="icon">syIcon sy-forwarding</prop>
+                            <prop key="color">#1f85ec</prop>
+                        </props>
+                        <props>
+                            <!-- 修改正文 -->
+                            <prop key="key">Edit</prop>
+                            <prop key="label">common.detail.label.editContent</prop>
+                            <prop key="type">4</prop>
+                            <prop key="icon">syIcon sy-modify_text</prop>
+                            <prop key="color">#1f85ec</prop>
+                        </props>
+                        <props>
+                            <!-- 签章 -->
+                            <prop key="key">Sign</prop>
+                            <prop key="label">permission.operation.Sign</prop>
+                            <prop key="type">4</prop>
+                            <prop key="icon">syIcon sy-signa</prop>
+                            <prop key="color">#1f85ec</prop>
+                        </props>
+                        <props>
+                            <!-- 督办设置 -->
+                            <prop key="key">SuperviseSet</prop>
+                            <prop key="label">common.toolbar.supervise.label</prop>
+                            <prop key="type">4</prop>
+                            <prop key="icon">syIcon sy-setting</prop>
+                            <prop key="color">#1f85ec</prop>
+                        </props>
+                        <props>
+                            <!-- 修改附件 -->
+                            <prop key="key">allowUpdateAttachment</prop>
+                            <prop key="label">common.toolbar.updateAttachment.label</prop>
+                            <prop key="type">4</prop>
+                            <prop key="icon">syIcon sy-modify_attachment</prop>
+                            <prop key="color">#1f85ec</prop>
+                        </props>
+                        <props>
+                            <!-- 转事件 -->
+                            <prop key="key">Transform</prop>
+                            <prop key="label">permission.operation.Transform</prop>
+                            <prop key="type">1</prop>
+                            <prop key="icon">syIcon sy-forward_event</prop>
+                            <prop key="color">#1f85ec</prop>
+                        </props>
+
+<!--                        &lt;!&ndash; 东证资管  添加手动调用接口按钮   2021-05-14 hehaitao   start&ndash;&gt;-->
+<!--                        <props>-->
+<!--                            &lt;!&ndash; 归档&ndash;&gt;-->
+<!--                            <prop key="key">sendPort</prop>-->
+<!--                            <prop key="label">手动触发</prop>-->
+<!--                            <prop key="type">4</prop>-->
+<!--                            <prop key="icon">syIcon sy-modify_attachment</prop>-->
+<!--                            <prop key="color">#1f85ec</prop>-->
+<!--                        </props>-->
+<!--                        &lt;!&ndash; 东证资管  添加手动调用接口按钮   2021-05-14 hehaitao   end&ndash;&gt;-->
+
+                        <props>
+                            <!-- 下载附件-->
+                            <prop key="key">download</prop>
+                            <prop key="label">下载附件</prop>
+                            <prop key="type">4</prop>
+                            <prop key="icon">syIcon sy-modify_attachment</prop>
+                            <prop key="color">#1f85ec</prop>
+                        </props>
+
+                    </list>
+                </entry>
+                <!-- 常用、高级操作 结束 -->
+            </map>
+        </property>
+    </bean>
+</beans>

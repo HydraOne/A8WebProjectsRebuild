@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--用于系统运行过程中输出日志 -->
+<!-- 
+	 ##1、v3x不再输出到console;
+	 ##2、ctp不再输出到console;
+	 ##3、form级别由info调至error。
+	 -->
+<Configuration status="warn" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<xi:include href="log4j2-properties.xml"/>
+	<xi:include href="log4j2-appenders.xml"/>
+	<Loggers>
+		<!--<Root level="WARN">
+             <AppenderRef ref="Console" />
+         </Root>-->
+		<AsyncRoot level="info">
+			<AppenderRef ref="ctp"/>
+			<!--对应的Appender为Appenders.RollingFile name="ctp"-->
+		</AsyncRoot>
+		<AsyncLogger level="info" additivity="false" name="console">
+			<AppenderRef ref="console"/>
+		</AsyncLogger>
+		<AsyncLogger level="info" additivity="false" name="com.seeyon.statistics">
+			<AppenderRef ref="statistics"/>
+		</AsyncLogger>
+		<AsyncLogger level="info" additivity="false" name="com.seeyon.ctp">
+			<AppenderRef ref="ctp"/>
+			<!-- 调用Loggers.Root的appender -->
+			<!--ctp不再输出到console <AppenderRef ref="console" />-->
+			<!--调用Appenders.Console name="console"-->
+		</AsyncLogger>
+		<AsyncLogger level="info" additivity="false" name="com.seeyon.v3x">
+			<AppenderRef ref="ctp"/>
+			<!--v3x不再输出到console <AppenderRef ref="console" />-->
+		</AsyncLogger>
+		<AsyncLogger level="info" additivity="false" name="com.seeyon.v3x.dee">
+			<AppenderRef ref="dee"/>
+			<!--对应的Appender为Appenders.RollingFile name="dee"-->
+		</AsyncLogger>
+        <AsyncLogger level="info" additivity="false" name="com.seeyon.apps.dee">
+            <AppenderRef ref="dee"/>
+            <!--对应的Appender为Appenders.RollingFile name="dee"-->
+        </AsyncLogger>		
+		<AsyncLogger level="debug" additivity="false" name="login">
+			<AppenderRef ref="login"/>
+			<!--通过getLogger("login")获取Logger实例-->
+		</AsyncLogger>
+		<AsyncLogger level="info" additivity="false" name="org">
+			<AppenderRef ref="org"/>
+		</AsyncLogger>
+		<!--form级别由info调至error <AsyncLogger level="info" additivity="false" name="com.seeyon.ctp.form">  -->
+		<AsyncLogger level="info" additivity="false" name="com.seeyon.ctp.form">
+			<AppenderRef ref="form"/>
+		</AsyncLogger>
+
+		<AsyncLogger level="info" additivity="false" name="com.seeyon.cap4">
+			<AppenderRef ref="cap"/>
+		</AsyncLogger>
+
+		<AsyncLogger level="info" additivity="false" name="cache">
+			<AppenderRef ref="cache"/>
+		</AsyncLogger>
+
+		<AsyncLogger level="info" additivity="false" name="com.seeyon.ctp.workflow">
+			<AppenderRef ref="workflow"/>
+		</AsyncLogger>
+		<AsyncLogger level="info" additivity="false" name="net.joinwork.bpm">
+			<AppenderRef ref="workflow"/>
+			<!--调用了Logger.workflow对应的Appender-->
+		</AsyncLogger>
+		<AsyncLogger level="debug" additivity="false" name="capability">
+			<AppenderRef ref="capability"/>
+		</AsyncLogger>
+        <AsyncLogger level="debug" additivity="false" name="rest">
+            <AppenderRef ref="rest"/>
+        </AsyncLogger>		
+		<AsyncLogger level="debug" additivity="false" name="scriptcompile">
+			<AppenderRef ref="scriptcompile"/>
+		</AsyncLogger>
+		<AsyncLogger level="info" additivity="false" name="ajax">
+			<AppenderRef ref="ajax"/>
+		</AsyncLogger>
+		<AsyncLogger level="error" additivity="false" name="transaction">
+			<AppenderRef ref="transaction"/>
+		</AsyncLogger>
+		<AsyncLogger level="error" additivity="false" name="org.hibernate">
+			<AppenderRef ref="hibernate"/>
+		</AsyncLogger>
+		<AsyncLogger level="error" additivity="false" name="org.hibernate.SQL">
+			<AppenderRef ref="sql"/>
+		</AsyncLogger>
+		<AsyncLogger level="info" additivity="false" name="monitor.sql">
+			<AppenderRef ref="sqlmonitor"/>
+		</AsyncLogger>
+		<AsyncLogger level="error" additivity="false" name="org.springframework">
+			<AppenderRef ref="spring"/>
+		</AsyncLogger>
+		<AsyncLogger level="debug" additivity="false" name="org.quartz">
+			<AppenderRef ref="quartz"/>
+		</AsyncLogger>
+		<AsyncLogger level="info" additivity="false" name="com.seeyon.ctp.index">
+			<AppenderRef ref="ctp"/>
+			<!-- 调用Loggers.Root的appender -->
+		</AsyncLogger>
+		<AsyncLogger level="info" additivity="false" name="com.seeyon.ctp.indexInterface">
+			<AppenderRef ref="ctp"/>
+			<!-- 调用Loggers.Root的appender -->
+		</AsyncLogger>
+        <AsyncLogger level="warn" additivity="false" name="org.apache.activemq">
+            <AppenderRef ref="ctp"/>
+        </AsyncLogger>
+		<AsyncLogger level="info" additivity="false" name="com.seeyon.ctp.services.flow">
+			<AppenderRef ref="flowLog"/>
+		</AsyncLogger>
+		<AsyncLogger level="info" additivity="false" name="com.seeyon.ctp.cluster">
+			<AppenderRef ref="cluster"/>
+		</AsyncLogger>
+		<AsyncLogger level="info" additivity="false" name="com.seeyon.ctp.common.cache.geode">
+			<AppenderRef ref="cluster"/>
+		</AsyncLogger>
+		<AsyncLogger level="warn" additivity="false" name="com.seeyon.ctp.common.cache.cluster">
+			<AppenderRef ref="cluster"/>
+		</AsyncLogger>
+		<AsyncLogger level="error" additivity="false" name="com.alibaba.dubbo">
+			<AppenderRef ref="dubbo"/>
+		</AsyncLogger>
+        <AsyncLogger level="error" additivity="false" name="com.alibaba.com.caucho.hessian">
+            <AppenderRef ref="dubbo"/>
+        </AsyncLogger>
+		<AsyncLogger level="info" additivity="false" name="com.seeyon.ctp.dubbo">
+			<AppenderRef ref="dubbo"/>
+		</AsyncLogger>
+		<AsyncLogger level="info" additivity="false" name="com.seeyon.ctp.common.security">
+			<AppenderRef ref="security"/>
+		</AsyncLogger>
+		<AsyncLogger level="debug" additivity="false" name="com.seeyon.ctp.rest.filter">
+			<AppenderRef ref="ddos"/>
+		</AsyncLogger>
+		<AsyncLogger level="error" additivity="false" name="com.seeyon.ctp.rest.filter">
+			<AppenderRef ref="ddosError"/>
+			<!--和上一个Logger使用同一包目录结构，对应两个不同的appender  -->
+		</AsyncLogger>
+		<AsyncLogger level="info" additivity="false" name="com.seeyon.apps.uc">
+			<AppenderRef ref="uc"/>
+		</AsyncLogger>
+		<AsyncLogger level="info" additivity="false" name="com.seeyon.apps.zx">
+			<AppenderRef ref="zx"/>
+		</AsyncLogger> 
+		<AsyncLogger level="info" additivity="false" name="com.seeyon.apps.index">
+			<AppenderRef ref="index"/>
+		</AsyncLogger>
+		<AsyncLogger level="info" additivity="false" name="com.seeyon.apps.indexResume">
+			<AppenderRef ref="index"/>
+		</AsyncLogger>			
+		<AsyncLogger level="info" additivity="false" name="com.seeyon.apps.cip">
+			<AppenderRef ref="cip"/>
+		</AsyncLogger>
+		<AsyncLogger level="info" additivity="false" name="com.seeyon.cap.interfacetrace">
+			<AppenderRef ref="captrace"/>
+		</AsyncLogger>
+		<AsyncLogger level="info" additivity="false" name="com.seeyon.apps.failover">
+			<AppenderRef ref="failover"/>
+		</AsyncLogger>
+		<AsyncLogger level="error" additivity="false" name="fe_network">
+			<AppenderRef ref="fe-network"/>
+		</AsyncLogger>
+		<AsyncLogger level="error" additivity="false" name="fe_caught">
+			<AppenderRef ref="fe-caught"/>
+		</AsyncLogger>
+		<AsyncLogger level="error" additivity="false" name="fe_resource">
+			<AppenderRef ref="fe-resource"/>
+		</AsyncLogger>
+		<AsyncLogger level="info" additivity="false" name="fe_report">
+			<AppenderRef ref="fe-report"/>
+		</AsyncLogger>
+		<AsyncLogger level="error" additivity="false" name="fe_unknown">
+			<AppenderRef ref="fe-unknown"/>
+		</AsyncLogger>
+		<AsyncLogger level="info" additivity="false" name="com.seeyon.apps.ocip">
+		<AppenderRef ref="ocip"/>
+		</AsyncLogger>
+		<AsyncLogger level="info" additivity="false" name="dataAgent">
+			<AppenderRef ref="dataAgent"/>
+		</AsyncLogger>
+		<AsyncLogger level="error" additivity="false" name="tenantMonitor">
+			<AppenderRef ref="tenant"/>
+		</AsyncLogger>
+		<AsyncLogger level="info" additivity="false" name="performance">
+			<AppenderRef ref="performance"/>
+		</AsyncLogger>
+		<AsyncLogger level="info" additivity="false" name="redisTrace">
+			<AppenderRef ref="redisTrace"/>
+		</AsyncLogger>
+		<!--监管合同日志-->
+		<AsyncLogger level="info" additivity="false" name="com.seeyon.apps.work">
+			<AppenderRef ref="LaoLiDeLog"/>
+		</AsyncLogger>
+
+	</Loggers>
+</Configuration>

@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="lib">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../../A8/ApacheJetspeed/lib" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/../../A8/ApacheJetspeed/lib" />
+    </SOURCES>
+    <jarDirectory url="file://$PROJECT_DIR$/../../A8/ApacheJetspeed/lib" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/../../A8/ApacheJetspeed/lib" recursive="false" type="SOURCES" />
+  </library>
+</component>
