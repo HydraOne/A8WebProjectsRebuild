@@ -4,7 +4,7 @@
     <!--	work01-->
     <bean name="/SignInController.do" class="com.seeyon.apps.work.work01.controller.SignInController"/>
     <!--	work03-->
-    <bean name="/ContractSupervisionColumnController.do" class="com.seeyon.apps.work.work03.controller.ContractSupervisionColumnController"/>
+    <bean name="/regulatoryContractController.do" class="com.seeyon.apps.work.work03.controller.RegulatoryContractController"/>
     <!--document -->
     <bean name="/DownloadAttachment.do" class="com.seeyon.apps.work.document.controller.DownloadAttachment"/>
     <bean name="/opinionController1.do" class="com.seeyon.apps.work.document.controller.OpinionController"/>

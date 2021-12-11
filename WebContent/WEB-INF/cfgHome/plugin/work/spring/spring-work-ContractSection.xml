@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http:springframework.org.dtd/spring-beans.dtd">
+<beans default-autowire="byName">
+    <bean id="contractSection" class="com.seeyon.apps.work.work03.config.ContractSection" init-method="init">
+        <property name="sectionType" value="common"/>
+        <property name="sortId" value="99"/>
+        <property name="properties">
+            <list>
+                <ref bean="sectionBaseNameProperty"/>
+                <bean class="com.seeyon.ctp.portal.section.SectionPropertyImpl">
+                    <property name="reference">
+                        <list>
+                            <!-- 栏目标题 -->
+                            <bean class="com.seeyon.ctp.portal.section.SectionReferenceImpl">
+                                <property name="name" value="columnsName"/>
+                                <property name="subject" value="cannel.name.label"/>
+                                <property name="valueType" value="2"/>
+                                <property name="defaultValue" value="supervision.section.name"/>
+                                <property name="validate" value="isInteger"/>
+                                <property name="validateValue" value="isInteger=true max=100 min=1"/>
+                            </bean>
+                            <!-- 栏目高度 -->
+                            <bean class="com.seeyon.ctp.portal.section.SectionReferenceImpl">
+                                <property name="name" value="height"/>
+                                <property name="subject" value="cannel.date.height"/>
+                                <property name="valueType" value="2"/>
+                                <property name="validate" value="isInteger"/>
+                                <property name="validateValue" value="isInteger=true max=100 min=1"/>
+                                <property name="defaultValue" value="300"/>
+                                <property name="helpType" value="2"/>
+                                <property name="helpValue" value="help-type-height"/>
+                            </bean>
+                        </list>
+                    </property>
+                </bean>
+            </list>
+        </property>
+    </bean>
+</beans>

@@ -6,7 +6,7 @@
     <!--work02-->
     <bean id="FormTimeViewMapperImpl" class="com.seeyon.apps.work.work02.dao.impl.FormTimeViewMapperImpl"/>
     <!--work03-->
-    <bean id="ContractSupervisionColumnMapperImpl" class="com.seeyon.apps.work.work03.dao.impl.ContractSupervisionColumnMapperImpl"/>
+    <bean id="regulatoryContractDaoImpl" class="com.seeyon.apps.work.work03.dao.impl.RegulatoryContractDaoImpl"/>
     <!--work05-->
     <bean id="TimerDaoImpl" class="com.seeyon.apps.work.work05.dao.impl.TimerDaoImpl"/>
     <!--work06-->

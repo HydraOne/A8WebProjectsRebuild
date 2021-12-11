@@ -6,7 +6,7 @@
     <!--work02 Spring -->
     <bean id="EndOfContractProcessMonitoring" class="com.seeyon.apps.work.work02.manager.EndOfContractProcessMonitoring"/>
     <!--work03 Spring -->
-    <bean id="ContractSupervisionColumnService" class="com.seeyon.apps.work.work03.manager.ContractSupervisionColumnService"/>
+    <bean id="regulatoryContractManagerImpl" class="com.seeyon.apps.work.work03.manager.impl.RegulatoryContractManagerImpl"/>
     <!--work04 Spring -->
     <bean id="ContractSupervisionModificationImpl" class="com.seeyon.apps.work.work04.manager.impl.ContractSupervisionModificationImpl"/>
     <!--work05 Spring -->
