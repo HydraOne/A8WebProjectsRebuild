@@ -8,7 +8,7 @@
     <!--work03 Spring -->
     <bean id="regulatoryContractManagerImpl" class="com.seeyon.apps.work.work03.manager.impl.RegulatoryContractManagerImpl"/>
     <!--work04 Spring -->
-    <bean id="ContractSupervisionModificationImpl" class="com.seeyon.apps.work.work04.manager.impl.ContractSupervisionModificationImpl"/>
+    <bean id="ContractInfoModifyImpl" class="com.seeyon.apps.work.work04.manager.impl.ContractInfoModifyImpl"/>
     <!--work05 Spring -->
     <bean id="TimedTaskImpl" class="com.seeyon.apps.work.work05.manager.impl.TimedTaskImpl" init-method="init"/>
     <!--work06 Spring -->

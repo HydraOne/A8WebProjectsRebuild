@@ -70,7 +70,6 @@ public class ContractFormListener {
 				//从本地配置中获取流程合同模板id
 				String formTemplateId = CtpCustomVariables.demandConfiguration_contractFileFlowChart;
 				String currentFormName = cap4FormManager.getFormByFormCode(formTemplateId).getMasterTableBean().getTableName();
-
 				if (!tableName.equals(currentFormName)) {
 					return;
 				}

@@ -9,6 +9,6 @@ import com.seeyon.cap4.form.modules.event.FormDataBeforeSubmitEvent;
  * @Description 监管合同档案修改
  */
 
-public interface ContractSupervisionModification {
-    public void monitorContractSupervisionModificationEvents(FormDataBeforeSubmitEvent event);
+public interface ContractInfoModify {
+    void monitorContractInfoModifyEvents(FormDataBeforeSubmitEvent event);
 }
