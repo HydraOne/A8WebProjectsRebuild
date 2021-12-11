@@ -56,6 +56,4 @@ public class RegulatoryContractController extends BaseController{
 		flipInfo.setSize(Integer.parseInt(sectionCount));
 		return new ModelAndView("/testContract/contractSection");
 	}
-	
-
 }
