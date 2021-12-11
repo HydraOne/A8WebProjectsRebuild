@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
+	<%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ include file="/WEB-INF/jsp/common/common.jsp"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
@@ -54,11 +54,11 @@ a:hover {
 			success:function(object){
 				if(object!=null&&object!==""){
 					var html = "";
-					html += "<tr><td style='font-size: 15px'>"+ "经办人" +"</td>"+
-					"<td style='font-size: 12px'>"+ "经办部门" +"</td>"+
-					"<td style='font-size: 12px'>"+ "申请日期" +"</td>"+
-					"<td style='font-size: 12px'>"+ "合同编号" +"</td>"+
-					"<td style='font-size: 12px'>"+ "单点登录url" +"</td></tr>";
+					html += "<tr><th style='font-size: 12px;'>"+ "经办人" +"</th>"+
+					"<th style='font-size: 12px'>"+ "经办部门" +"</th>"+
+					"<th style='font-size: 12px'>"+ "申请日期" +"</th>"+
+					"<th style='font-size: 12px'>"+ "合同编号" +"</th>"+
+					"<th style='font-size: 12px'>"+ "单点登录url" +"</th></tr>";
 					 for(var i = 0; i < object.length; i++){
 						html += "<tr><td style='font-size: 12px'>"+ object[i].field0001 +"</td>"+
 						"<td style='font-size: 12px'>"+ object[i].field0002 +"</td>"+

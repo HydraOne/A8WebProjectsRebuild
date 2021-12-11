@@ -1,5 +1,6 @@
 package com.seeyon.ctp.rest.resources;
 
+import com.seeyon.apps.work.utils.CtpCustomVariables;
 import com.seeyon.cap4.form.bean.FormBean;
 import com.seeyon.cap4.form.bean.FormTableBean;
 import com.seeyon.cap4.form.service.CAP4FormManager;
@@ -48,7 +49,7 @@ public class ContractFormResource extends BaseResource {
         long uuid = UUIDUtil.getUUIDLong();
 
         //存到数据库底表（合同底表）
-        String formCode = AppContext.getSystemProperty("demandConfiguration.bottomSheetOfContractFile");
+        String formCode = CtpCustomVariables.demandConfiguration_bottomSheetOfContractFile;
 
         //获取FormBean
         FormBean formByFormCode = cap4FormManager.getFormByFormCode(formCode);
@@ -64,7 +65,7 @@ public class ContractFormResource extends BaseResource {
             if (masterTableBean != null) {
                 //表名
                 tableName = masterTableBean.getTableName();
-
+            /**formmain_0029  **/
                 List<Map<String, Object>> listMap = new ArrayList<>();
 
                 //将数据库字段和值存入map

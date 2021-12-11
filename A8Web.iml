@@ -20,7 +20,7 @@
             <entry key="lastExternalPluginCheckTime" value="1637828599841" />
           </map>
         </option>
-        <option name="version" value="8" />
+        <option name="version" value="11" />
       </configuration>
     </facet>
     <facet type="web" name="Web">
@@ -28,7 +28,6 @@
         <webroots>
           <root url="file://$MODULE_DIR$/WebContent" relative="/" />
         </webroots>
-        <sourceRoots />
       </configuration>
     </facet>
   </component>
@@ -39,7 +38,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src-plugin" isTestSource="false" />
     </content>
-    <orderEntry type="jdk" jdkName="1.8 (2)" jdkType="JavaSDK" />
+    <orderEntry type="jdk" jdkName="A8 JDK 1.8" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="org.eclipse.jst.j2ee.internal.web.container" level="application" />
     <orderEntry type="library" exported="" name="org.eclipse.jst.j2ee.internal.module.container" level="application" />

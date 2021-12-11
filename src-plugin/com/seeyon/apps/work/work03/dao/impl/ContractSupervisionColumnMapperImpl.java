@@ -1,5 +1,6 @@
 package com.seeyon.apps.work.work03.dao.impl;
 
+import com.seeyon.apps.work.utils.CtpCustomVariables;
 import com.seeyon.apps.work.work01.manager.ContractFormListener;
 import com.seeyon.apps.work.work03.dao.ContractSupervisionColumnMapper;
 import com.seeyon.cap4.form.bean.FormBean;
@@ -30,7 +31,7 @@ public class ContractSupervisionColumnMapperImpl implements ContractSupervisionC
         JDBCAgent jdbcAgent = null;
         //通过CAP4拿到合同底表
         try {
-            formByFormCode = cap4FormManager.getFormByFormCode(AppContext.getSystemProperty("demandConfiguration.bottomSheetOfContractFile"));
+            formByFormCode = cap4FormManager.getFormByFormCode(CtpCustomVariables.demandConfiguration_bottomSheetOfContractFile);
             
             sql = "select m.`NAME` AS field0001, " +
                     "u.`NAME` AS field0002," +

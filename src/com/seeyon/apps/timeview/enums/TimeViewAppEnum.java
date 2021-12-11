@@ -74,7 +74,7 @@ public enum TimeViewAppEnum implements EnumsCode {
             /**
              * 新增枚举  register
              */
-            case 55:
+            case 107:
                 app = ApplicationCategoryEnum.register;
                 break;
             /**

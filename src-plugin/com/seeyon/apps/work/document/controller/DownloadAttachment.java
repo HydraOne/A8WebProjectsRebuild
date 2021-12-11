@@ -53,7 +53,7 @@ public class DownloadAttachment extends BaseController {
         try {
             ctpAffair = affairManager.get(Long.valueOf(affairId));
         } catch (BusinessException e) {
-            logger.error("根据id获取affair出现异常----lidan",e);
+            logger.error("根据id获取affair出现异常---",e);
         }
 
         Long appId = ctpAffair.getFormAppId();

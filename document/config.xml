@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<formExport version="2.0">
+    <summary id="724228233321661313" name="formmain_0055"/>
+        <values><column name="合同编号"><value>null</value></column>
+                <column name="合同名称"><value>2022-11-302021120100125</value></column>
+                <column name="合同金额"><value>null</value></column>
+                <subForms/>
+        </values>
+</formExport>

@@ -138,7 +138,7 @@ public enum ApplicationCategoryEnum {
     ctripIntegratedPlugin(105), // 携程集成插件
     econtract(106), // 电子合同
     //error
-    register(55);
+    register(107);
 
     // 标识 用于数据库存储
     private int key;

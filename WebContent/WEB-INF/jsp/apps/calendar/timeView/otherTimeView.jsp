@@ -44,9 +44,9 @@
 					    <c:if test="${ctp:hasPlugin('plan')}"><option value="1">${ctp:i18n("timeview.title.plan") }</option></c:if>
 					    <c:if test="${ctp:hasPlugin('taskmanage')}"><option value="2">${ctp:i18n("timeview.title.task") }</option></c:if>
 					    <c:if test="${ctp:hasPlugin('calendar')}"><option value="4">${ctp:i18n("timeview.title.event") }</option></c:if>
-						<%--时间视图   李丹 2020 9 *******************************************start**********************--%>
-						<c:if test="${register}"><option value="55">付款</option></c:if>
-						<%--时间视图   李丹 2020 9 *******************************************end**********************--%>
+						<%--时间视图   2021  *******************************************start**********************--%>
+						<c:if test="${register}"><option value="107">付款</option></c:if>
+						<%--时间视图   2021   *******************************************end**********************--%>
 					</select>
 				</div>
             <%-- 时间视图显示，致信端不显示--%>
@@ -74,6 +74,9 @@
 				<a href="javascript:void(0)" class="common_button schedulerCommon_button schedulerEventBTNStyle radius3px" onclick="otherTimeView.newTask()">${ctp:i18n("timeview.oprates.create.new_task") }</a>
 			</c:if>
 			<c:if test="${ctp:hasPlugin('calendar')  && hasNewEventAuth}">
+				<a href="javascript:void(0)" class="common_button schedulerCommon_button schedulerEventBTNStyle radius3px" onclick="otherTimeView.newCalEvent()">${ctp:i18n("timeview.oprates.create.new_event") }</a>
+			</c:if>
+			<c:if test="${register}">
 				<a href="javascript:void(0)" class="common_button schedulerCommon_button schedulerEventBTNStyle radius3px" onclick="otherTimeView.newCalEvent()">${ctp:i18n("timeview.oprates.create.new_event") }</a>
 			</c:if>
 		</div>

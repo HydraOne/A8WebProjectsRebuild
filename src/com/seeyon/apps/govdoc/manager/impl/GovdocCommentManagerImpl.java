@@ -758,9 +758,7 @@ public class GovdocCommentManagerImpl implements GovdocCommentManager {
 				V3xHtmSignatureEnum.HTML_SIGNATURE_EDOC_FLOW_INSCRIBE.getKey());
 
 		// 公文处理意见回显到公文单,排序
-		// long flowPermAccout =
-		// GovdocHelper.getFlowPermAccountId(user.getLoginAccount(),
-		// edocOpinion.getEdocSummary(), templateManager);
+		//long flowPermAccout = GovdocHelper.getFlowPermAccountId(user.getLoginAccount(), edocOpinion.getEdocSummary(), templateManager);
 
 		// 查找公文单意见元素显示。
 		FormOptionExtend govdocFormExtend = govdocFormManager.findOptionExtendByFormId(formId);
@@ -1981,7 +1979,6 @@ public class GovdocCommentManagerImpl implements GovdocCommentManager {
 			/************************** 公文意见根据职位等级排序 start ***************************/
 			/**
 			 *
-			 *  @author Ch1stuntQAQ
 			 *  @Description 公文意见根据职位等级排序
 			 *  @data 2021/9/26 - 17:14
 			 */

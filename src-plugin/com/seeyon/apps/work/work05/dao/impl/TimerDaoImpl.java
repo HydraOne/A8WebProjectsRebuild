@@ -1,5 +1,6 @@
 package com.seeyon.apps.work.work05.dao.impl;
 
+import com.seeyon.apps.work.utils.CtpCustomVariables;
 import com.seeyon.apps.work.work05.dao.TimerDao;
 import com.seeyon.cap4.form.bean.FormTableBean;
 import com.seeyon.cap4.form.service.CAP4FormManager;
@@ -36,7 +37,7 @@ public class TimerDaoImpl implements TimerDao {
         List<FormTableBean> subTableBean = null;
         try {
             //此处获取的是子表javabean对象
-            subTableBean = cap4FormManager.getFormByFormCode(AppContext.getSystemProperty("demandConfiguration.contractFileFlowChart")).getSubTableBean();
+            subTableBean = cap4FormManager.getFormByFormCode(CtpCustomVariables.demandConfiguration_contractFileFlowChart).getSubTableBean();
         } catch (BusinessException e) {
             log.error(e);
         }
@@ -74,7 +75,7 @@ public class TimerDaoImpl implements TimerDao {
             String ids = "(" + stringBuilder.toString() + ")";
             FormTableBean masterTableBean = null;
             try {
-                masterTableBean = cap4FormManager.getFormByFormCode(AppContext.getSystemProperty("demandConfiguration.contractFileFlowChart")).getMasterTableBean();
+                masterTableBean = cap4FormManager.getFormByFormCode(CtpCustomVariables.demandConfiguration_contractFileFlowChart).getMasterTableBean();
             } catch (BusinessException e) {
                 log.error(e);
             }

@@ -361,7 +361,7 @@ public class TimeViewAjaxManagerImpl implements TimeViewAjaxManager {
             }
         }
         // 排序
-        Collections.sort(eventInfo);
+//        Collections.sort(eventInfo);
 
         retMap.put("memberInfo", memberInfo);
         retMap.put("eventInfo", eventInfo);
@@ -662,5 +662,4 @@ public class TimeViewAjaxManagerImpl implements TimeViewAjaxManager {
         retMap.put("dateStamp", Datetimes.formatDatetime(new Date()));
         return retMap;
     }
-    
 }

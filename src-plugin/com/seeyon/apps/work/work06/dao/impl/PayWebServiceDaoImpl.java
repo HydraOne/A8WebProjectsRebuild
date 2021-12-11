@@ -1,6 +1,7 @@
 package com.seeyon.apps.work.work06.dao.impl;
 
 
+import com.seeyon.apps.work.utils.CtpCustomVariables;
 import com.seeyon.apps.work.work06.dao.PayWebServiceDao;
 import com.seeyon.cap4.form.bean.FormTableBean;
 import com.seeyon.cap4.form.service.CAP4FormManager;
@@ -24,7 +25,7 @@ public class PayWebServiceDaoImpl implements PayWebServiceDao {
     //合同流程表
     @Override
     public Map findPay(String htNum) throws BusinessException {
-    	FormTableBean table = cap4FormManager.getFormByFormCode(AppContext.getSystemProperty("demandConfiguration.bottomSheetOfContractFile1")).getMasterTableBean();
+    	FormTableBean table = cap4FormManager.getFormByFormCode(CtpCustomVariables.demandConfiguration_bottomSheetOfContractFile).getMasterTableBean();
         String htbh = table.getFieldBeanByDisplay("合同编号").getName();
         String sql = "select * from " + table.getTableName() + " where "+htbh+" = '" + htNum +"'";
         JDBCAgent agent = new JDBCAgent(false, false);
@@ -42,7 +43,7 @@ public class PayWebServiceDaoImpl implements PayWebServiceDao {
 
     @Override
     public void updatePay(String num, String htNum) throws BusinessException {
-        FormTableBean table = cap4FormManager.getFormByFormCode(AppContext.getSystemProperty("demandConfiguration.bottomSheetOfContractFile1")).getMasterTableBean();
+        FormTableBean table = cap4FormManager.getFormByFormCode(CtpCustomVariables.demandConfiguration_bottomSheetOfContractFile).getMasterTableBean();
         String htbh = table.getFieldBeanByDisplay("合同编号").getName();
         String ljyf = table.getFieldBeanByDisplay("累计已付金额").getName();
         String sql = "update " + table.getTableName() + " set "+ljyf+ " = " + num + " where "+htbh+" = '" + htNum + "'";
@@ -56,5 +57,4 @@ public class PayWebServiceDaoImpl implements PayWebServiceDao {
             agent.close();
         }
     }
-
 }

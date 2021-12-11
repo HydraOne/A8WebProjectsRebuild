@@ -18,7 +18,6 @@ import java.io.UnsupportedEncodingException;
 import java.util.Random;
 
 /**
- * @author Ch1stuntQAQ
  * @data 2021/9/24 - 10:03
  * @Description TODO 单点登陆的控制层，用于单点登陆的校验 校验唯一值为 登陆名 loginName
  */

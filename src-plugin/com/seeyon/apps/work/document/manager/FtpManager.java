@@ -29,8 +29,7 @@ import com.seeyon.ctp.common.usermessage.MessageReceiver;
 import www.seeyon.com.utils.UUIDUtil;
 
 /**
- * @author Ch1stuntQAQ
- * @data 2021/10/8 - 16:18
+ * @data 2021/12/9
  * FTP上传文件写入第三方数据库数据
  */
 public class FtpManager {

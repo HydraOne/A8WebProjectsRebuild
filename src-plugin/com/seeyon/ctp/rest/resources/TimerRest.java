@@ -1,5 +1,6 @@
 package com.seeyon.ctp.rest.resources;
 
+import com.seeyon.apps.work.utils.CtpCustomVariables;
 import com.seeyon.ctp.common.AppContext;
 import com.seeyon.ctp.common.log.CtpLogFactory;
 import com.seeyon.v3x.dee.util.rest.CTPRestClient;
@@ -24,13 +25,13 @@ import java.util.Map;
 @Produces("application/json")
 public class TimerRest extends BaseResource{
     //本地ip
-    String restUrl = "http://127.0.0.1:8081";//error
+    String restUrl = "http://127.0.0.1:80";//error
     //rest账号
-    String restName = AppContext.getSystemProperty("demandConfiguration.restAccount");
+    String restName = CtpCustomVariables.demandConfiguration_restAccount;
     //rest密码
-    String restPassword = AppContext.getSystemProperty("demandConfiguration.restPassword");
+    String restPassword = CtpCustomVariables.demandConfiguration_restPassword;
     //发起付款流程表单的编号
-    String templateCode = AppContext.getSystemProperty("demandConfiguration.paymentFlowSheet");
+    String templateCode = CtpCustomVariables.demandConfiguration_paymentFlowSheet;
     //指定协议、IP和端口、获取CTPServiceClientManager
     CTPServiceClientManager clientManager = CTPServiceClientManager.getInstance(restUrl);
     //流程所需参数
@@ -49,7 +50,7 @@ public class TimerRest extends BaseResource{
         client.authenticate(restName, restPassword);
         params.put("templateCode",templateCode);
         params.put("attachments",new Long[]{});
-        params.put("senderLoginName","lidan");
+        params.put("senderLoginName","lisi");
         params.put("subject","付款流程");
         params.put("data",dataXml);
         params.put("param","0");

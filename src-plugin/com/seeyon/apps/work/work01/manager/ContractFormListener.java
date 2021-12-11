@@ -3,6 +3,7 @@ package com.seeyon.apps.work.work01.manager;
 import com.alibaba.fastjson.JSONObject;
 import com.seeyon.apps.collaboration.event.CollaborationFinishEvent;
 import com.seeyon.apps.collaboration.po.ColSummary;
+import com.seeyon.apps.work.utils.CtpCustomVariables;
 import com.seeyon.apps.work.utils.RestHttpUtils;
 import com.seeyon.apps.work.work01.dao.ContractManagementMapper;
 import com.seeyon.cap4.form.api.FormApi4Cap4;
@@ -44,7 +45,6 @@ public class ContractFormListener {
 	public void eventEndMonitoring(CollaborationFinishEvent event) {
 		//获取summary对象
 		HashMap<Integer, Integer> map = new HashMap();
-		logger.info("hello world");
 		ColSummary summary = event.getSummary();
 		//获取表单模板id
 		Long formAppid = summary.getFormAppid();
@@ -68,7 +68,7 @@ public class ContractFormListener {
 			//判断是否为合同流程表单
 			try {
 				//从本地配置中获取流程合同模板id
-				String formTemplateId = AppContext.getSystemProperty("demandConfiguration.contractFileFlowChart");
+				String formTemplateId = CtpCustomVariables.demandConfiguration_contractFileFlowChart;
 				String currentFormName = cap4FormManager.getFormByFormCode(formTemplateId).getMasterTableBean().getTableName();
 
 				if (!tableName.equals(currentFormName)) {
@@ -80,7 +80,6 @@ public class ContractFormListener {
 		}
 		//数据库查表名和id
 		Map resultMap = contractManagementMapper.selectTableDetailsByTableNameAndFormRecordId(tableName, formRecordid);
-
 		//得到表单内容进行封装
 		HashMap<String, Object> dateMap = new HashMap<>();
 		assert masterTableBean != null;
@@ -93,11 +92,11 @@ public class ContractFormListener {
 		dateMap.put("合同金额", resultMap.get(masterTableBean.getFieldBeanByDisplay("合同金额").getName()));
 		dateMap.put("累计已付金额", resultMap.get(masterTableBean.getFieldBeanByDisplay("累计已付金额").getName()));
 		//单点登录连接
-		dateMap.put("单点登录",AppContext.getSystemProperty("demandConfiguration.signInUrl")+"?method=signIn&LoginId="+resultMap.get(masterTableBean.getFieldBeanByDisplay("经办人").getName()));
+		dateMap.put("单点登录",CtpCustomVariables.demandConfiguration_signInUrl+"?method=signIn&LoginId="+resultMap.get(masterTableBean.getFieldBeanByDisplay("经办人").getName()));
 //		http://localhost:80/seeyon/SignInController.do?method=signIn&LoginId=2698108388093480400
 		//配置文件获取设置好的tokenUrl
-		String getUrl = AppContext.getSystemProperty("demandConfiguration.getTokenUrl");
-		getUrl += "/" + AppContext.getSystemProperty("demandConfiguration.restAccount") + "/" + AppContext.getSystemProperty("demandConfiguration.restPassword");
+		String getUrl = CtpCustomVariables.demandConfiguration_getTokenUrl;
+		getUrl += "/" + CtpCustomVariables.demandConfiguration_restAccount + "/" + CtpCustomVariables.demandConfiguration_restPassword;
 		//使用原有已配置的rest接口获取tokenJson
 		String tokenJson = RestHttpUtils.sendGetRequest(getUrl, "");
 		//获取到的rest接口数据是一个string类型的map集合 所以将string数据类型转换为map类型
@@ -107,7 +106,7 @@ public class ContractFormListener {
 		//获取到token
 		String tokenString = (String) jsonMap.get("id");
 		//调用rest接口带token
-		String postUrl = AppContext.getSystemProperty("demandConfiguration.nativePostRestUrl");
+		String postUrl = CtpCustomVariables.demandConfiguration_nativePostRestUrl;
 		postUrl += "?token="+tokenString;
 		//发送post请求
 		RestHttpUtils.sendPostRequest(postUrl,jsonFormatData);

@@ -2,6 +2,7 @@ package com.seeyon.apps.work.work06.manager;
 
 import com.seeyon.apps.collaboration.event.CollaborationFinishEvent;
 import com.seeyon.apps.collaboration.po.ColSummary;
+import com.seeyon.apps.work.utils.CtpCustomVariables;
 import com.seeyon.apps.work.utils.HttpHelper;
 import com.seeyon.apps.work.work01.dao.impl.ContractManagementMapperImpl;
 import com.seeyon.cap4.form.bean.FormBean;
@@ -46,7 +47,7 @@ public class PayEventListener {
             //拿到表名
             String tableName = masterTableBean.getTableName();
             //判断是否是自己定义的那张表格，不是的话取反，让方法结束，是的话取反，让继续执行代码
-            if (!tableName.equals(cap4FormManager.getFormByFormCode(AppContext.getSystemProperty("demandConfiguration.paymentFlowSheet")).getMasterTableBean().getTableName())) {
+            if (!tableName.equals(cap4FormManager.getFormByFormCode(CtpCustomVariables.demandConfiguration_paymentFlowSheet).getMasterTableBean().getTableName())) {
                 return;
             }
             log.info("合同支付完成，进行金额累加");
@@ -55,7 +56,7 @@ public class PayEventListener {
             String contractNo = String.valueOf(resultMap.get(masterTableBean.getFieldBeanByDisplay("合同编号").getName()));
             String contractMoney = String.valueOf(resultMap.get(masterTableBean.getFieldBeanByDisplay("已付款金额合计").getName()));
             //封装xml，传入工具类，调用webservice接口进行金额累加
-            String WebServiceUrl =  AppContext.getSystemProperty("demandConfiguration.webservice");
+            String WebServiceUrl =  CtpCustomVariables.demandConfiguration_webservice;
             //document
             Document document = DocumentHelper.createDocument();
             //添加一个根节点
