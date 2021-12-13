@@ -1,25 +1,28 @@
 package com.seeyon.apps.work.work05.dao.impl;
 
 import com.seeyon.apps.work.utils.CtpCustomVariables;
+import com.seeyon.apps.work.work01.dao.ContractManagementMapper;
+import com.seeyon.apps.work.work05.dao.PaymentStatusDao;
 import com.seeyon.apps.work.work05.dao.TimerDao;
 import com.seeyon.cap4.form.bean.FormTableBean;
 import com.seeyon.cap4.form.service.CAP4FormManager;
-import com.seeyon.ctp.common.AppContext;
 import com.seeyon.ctp.common.exceptions.BusinessException;
 import com.seeyon.ctp.common.log.CtpLogFactory;
 import com.seeyon.ctp.util.JDBCAgent;
 import org.apache.commons.logging.Log;
-import org.json.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.math.BigDecimal;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
 /**
- * @author Ch1stuntQAQ
- * @data 2021/9/29 - 10:50
- *      
+ * @author wangjiahao
+ * @email wangjiahao@microcental.net
+ * 定时器
  */
 public class TimerDaoImpl implements TimerDao {
     //日志
@@ -27,69 +30,111 @@ public class TimerDaoImpl implements TimerDao {
     //表单管理对象
     @Autowired
     private CAP4FormManager cap4FormManager;
+
+    @Autowired
+    private PaymentStatusDao paymentStatusDaoImpl;
+
     @Override
-    public List getDate() {
+    public List getPaymentPlanCurrentDate() {
         //返回明细表结果集合
         List resultList = null;
         //返回主表结果集合
-        List res = null ;
+        List res = null;
         //获取明细表的付款时间是今天的集合，只要集合有值，就需要拿主表信息去提醒
         List<FormTableBean> subTableBean = null;
         try {
             //此处获取的是子表javabean对象
             subTableBean = cap4FormManager.getFormByFormCode(CtpCustomVariables.demandConfiguration_contractFileFlowChart).getSubTableBean();
         } catch (BusinessException e) {
-            log.error(e);
+            log.error("获取子表异常", e);
         }
         //取到数据库与当前日相同数据，使用DATE()获取时间中日期部分，得到每日时间条件下的数据
         assert subTableBean != null;
         FormTableBean tableBean = subTableBean.get(0);
         //获取域对象并得到名字
         String dateName = tableBean.getFieldBeanByDisplay("预订合同-付款日期").getName();
+        String amounts = tableBean.getFieldBeanByDisplay("预订合同-付款金额").getName();
+        String paymentStatusName = tableBean.getFieldBeanByDisplay("付款状态").getName();
+        Long unPaymentEnumId = paymentStatusDaoImpl.getEnumIdByName("未支付");
         //获取表单名字
         String tableName = tableBean.getTableName();
-        String sql = "SELECT * FROM " + tableName + " WHERE DATE("+dateName+") = DATE(NOW())";
-        JDBCAgent jdbcAgent = new JDBCAgent(false, false);
-        try {
-            jdbcAgent.execute(sql);
-            resultList =jdbcAgent.resultSetToList();
+        StringBuilder sql = new StringBuilder("SELECT formmain_id,").append(amounts).
+                append(" FROM ").append(tableName).append(" WHERE DATE(").
+                append(dateName).append(") = DATE(NOW()) AND ")
+                .append(paymentStatusName).append("=").append(unPaymentEnumId);
+        try (JDBCAgent jdbcAgent = new JDBCAgent()) {
+            jdbcAgent.execute(sql.toString());
+            //得到明细表每行数据  合同档案主表 需支付金额
+            resultList = jdbcAgent.resultSetToList();
         } catch (BusinessException | SQLException e) {
-            log.error("查询当日表单错误",e);
-        }finally {
-            jdbcAgent.close();
+            log.error("查询当日表单错误", e);
         }
-        if (resultList!=null && resultList.size()>0) {
-            int size = resultList.size(),i=0;
-            StringBuilder stringBuilder = new StringBuilder();
-            for (Object o : resultList) {
-                i++;
-                Map map = (Map) o;
-                String formmainId =String.valueOf(map.get("formmain_id"));
-                stringBuilder.append("'");
-                stringBuilder.append(formmainId);
-                stringBuilder.append("'");
-                if (i<size){
-                    stringBuilder.append(",");
+        if (resultList == null || resultList.size() == 0) {
+            log.info("暂时无付款计划");
+            return null;
+        }
+        //获取合同id关联当日应付金额
+        Map<Long, BigDecimal> idRelAmountsMap = new HashMap<>();
+        for (Object item : resultList) {
+            Map map = (Map) item;
+            Long key = (Long) map.get("formmain_id");
+            if (idRelAmountsMap.containsKey(key)) {
+                BigDecimal oriSumAmount = idRelAmountsMap.get(key);
+                BigDecimal rowAmount = (BigDecimal) map.get(key);
+                BigDecimal sum = oriSumAmount.add(rowAmount);
+                idRelAmountsMap.replace(key, sum);
+            } else {
+                idRelAmountsMap.put(key, (BigDecimal) map.get(amounts));
+            }
+        }
+        //拼接出当日有付款计划的合同 id 编号 在用 in 关键字 再去主表获得合同编号 名字信息
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Long mainId : idRelAmountsMap.keySet()) {
+            stringBuilder.append("'");
+            stringBuilder.append(mainId);
+            stringBuilder.append("',");
+        }
+        int len = stringBuilder.length();
+        stringBuilder.deleteCharAt(len - 1);
+        FormTableBean masterTableBean = null;
+        try {
+            masterTableBean = cap4FormManager.getFormByFormCode(CtpCustomVariables.demandConfiguration_contractFileFlowChart).getMasterTableBean();
+        } catch (BusinessException e) {
+            log.error("获取主表异常", e);
+        }
+        FormTableBean bottomTable = null;
+        try {
+            bottomTable = cap4FormManager.getFormByFormCode(CtpCustomVariables.demandConfiguration_bottomSheetOfContractFile).getMasterTableBean();
+        } catch (BusinessException e) {
+            log.error("未能找到表信息", e);
+        }
+        if (resultList != null && resultList.size() > 0) {
+            String ids = "(" + stringBuilder.toString() + ")";
+            String flowTableContractNumColName = masterTableBean.getTableName() + "." + masterTableBean.getFieldBeanByDisplay("合同编号").getName();
+            String bottomTableContractNumColName = bottomTable.getTableName() + "." + bottomTable.getFieldBeanByDisplay("合同编号").getName();
+            String sql2 = "SELECT " + masterTableBean.getTableName() + ".* FROM " + masterTableBean.getTableName() +
+                    " right join " + bottomTable.getTableName() + " on " +
+                    flowTableContractNumColName + "=" + bottomTableContractNumColName + " WHERE " + masterTableBean.getTableName() + ".ID in " + ids;
+            try (JDBCAgent jdbcAgent = new JDBCAgent(false, false)) {
+                jdbcAgent.execute(sql2);
+                res = jdbcAgent.resultSetToList();
+            } catch (BusinessException | SQLException e) {
+                if (e instanceof BusinessException) {
+                    log.error("获取数据异常", e);
+                } else {
+                    log.error("执行SQL语句错误", e);
                 }
             }
-            String ids = "(" + stringBuilder.toString() + ")";
-            FormTableBean masterTableBean = null;
-            try {
-                masterTableBean = cap4FormManager.getFormByFormCode(CtpCustomVariables.demandConfiguration_contractFileFlowChart).getMasterTableBean();
-            } catch (BusinessException e) {
-                log.error(e);
-            }
-            String sql2 = "SELECT * FROM " + masterTableBean.getTableName() + " WHERE ID in "+ids ;
-            JDBCAgent jdbcAgent2 = new JDBCAgent(false, false);
-            try {
-                jdbcAgent2.execute(sql2);
-                res = jdbcAgent2.resultSetToList();
-            } catch (BusinessException | SQLException e) {
-                log.error(e);
-            }finally {
-                jdbcAgent2.close();
-            }
         }
-        return res;
+        LinkedList<Map<Object, Object>> result = new LinkedList<>();
+        for (Object obj : res) {
+            Map map = new HashMap();
+            map.put("合同名称", ((Map) obj).get(masterTableBean.getFieldBeanByDisplay("合同名称").getName()));
+            map.put("合同编号", ((Map) obj).get(masterTableBean.getFieldBeanByDisplay("合同编号").getName()));
+            Long mainId = (Long) ((Map) obj).get("id");
+            map.put("合同金额", idRelAmountsMap.get(mainId));
+            result.add(map);
+        }
+        return result;
     }
 }

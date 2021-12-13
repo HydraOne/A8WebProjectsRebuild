@@ -92,7 +92,10 @@ public class PayWebServiceImpl implements PayWebService {
         String moneyName = masterTableBean.getFieldBeanByDisplay("累计已付金额").getName();
         BigDecimal money1 = (BigDecimal)map2.get(moneyName) ;
         //替换//
-        BigDecimal money2= new BigDecimal(Integer.parseInt((String) map.get("付款金额")));
+        BigDecimal money2= new BigDecimal((String) map.get("付款金额"));
+        if (money1 ==null) {
+            money1 = new BigDecimal(0);
+        }
         money1 =  money1.add(money2);
         String num2 = String.valueOf(money1);
         //保存更新数据库，监听底表中

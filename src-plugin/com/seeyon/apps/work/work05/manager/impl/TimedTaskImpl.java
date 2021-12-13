@@ -3,12 +3,11 @@ package com.seeyon.apps.work.work05.manager.impl;
 import com.alibaba.fastjson.JSONObject;
 import com.seeyon.apps.work.utils.CtpCustomVariables;
 import com.seeyon.apps.work.utils.RestHttpUtils;
-import com.seeyon.apps.work.work05.dao.TimerDao;
 import com.seeyon.apps.work.work05.manager.TimedTask;
+import com.seeyon.apps.work.work05.dao.TimerDao;
 import com.seeyon.cap4.form.bean.FormBean;
 import com.seeyon.cap4.form.bean.FormTableBean;
 import com.seeyon.cap4.form.service.CAP4FormManager;
-import com.seeyon.ctp.common.AppContext;
 import com.seeyon.ctp.common.exceptions.BusinessException;
 import com.seeyon.ctp.common.log.CtpLogFactory;
 import org.apache.commons.logging.Log;
@@ -17,20 +16,13 @@ import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.security.acl.LastOwnerException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
- * @author Ch1stuntQAQ
- * @data 2021/9/29 - 9:22
- * @Description 实现类
- * 
-ZH2021-09-222021100600076
+ * @author wangjiahao
+ * @email wangjiahao@microcental.net
  */
-
-public class TimedTaskImpl implements  TimedTask{
+public class TimedTaskImpl implements TimedTask {
 
     //日志
     private static final Log log = CtpLogFactory.getLog(TimedTaskImpl.class);
@@ -44,46 +36,37 @@ public class TimedTaskImpl implements  TimedTask{
     private TimerDao timerDao;
 
     @Override
-    public void initiateThePaymentProcess() {
-
+    public void initiateThePaymentProcess() throws Exception {
         //获取符合条件的主表结果
-        List resultList = timerDao.getDate();
+        List resultList = timerDao.getPaymentPlanCurrentDate();
         Map map = null;
         //拿到token
         String restName = CtpCustomVariables.demandConfiguration_restAccount;
         String restPassword = CtpCustomVariables.demandConfiguration_restPassword;
         String getUrl = CtpCustomVariables.demandConfiguration_getTokenUrl;
         getUrl += "/" + restName + "/" + restPassword;
-        String tokenJson = RestHttpUtils.sendGetRequest(getUrl, "");
-        //将token集合字符串转为map，再拿到token字符串
-        Map<String, Object> map2 = JSONObject.parseObject(tokenJson);
+        String tokenXML = RestHttpUtils.sendGetRequest(getUrl, "");
+//        //将token集合字符串转为map，再拿到token字符串
+        Map<String, Object> map2 = JSONObject.parseObject(tokenXML);
         String tokenString = (String) map2.get("id");
         //拼接url为rest接口
         String timerRestUrlString = CtpCustomVariables.demandConfiguration_nativePostRestUrlCtrls;
-        timerRestUrlString+="?token="+tokenString;
-        String templateCode = CtpCustomVariables.demandConfiguration_bottomSheetOfContractFile;
-        FormTableBean masterTableBean = null;
-        try {
-            masterTableBean = cap4FormManager.getFormByFormCode(templateCode).getMasterTableBean();
-        } catch (BusinessException e) {
-            log.error(e);//error
-        }
-        //循环遍历每一条纪律，每条记录发起一次付款流程
+        timerRestUrlString += "?token=" + tokenString;
+        String templateCode = CtpCustomVariables.demandConfiguration_contractFileFlowChart;
+        //循环遍历每一条记录，每条记录发起一次付款流程
         if (resultList == null) return;
         for (Object o : resultList) {
             map = (Map) o;
-            assert masterTableBean != null;
             //获取合同名称 ，合同编号，合同金额
-            String contractName = String.valueOf(map.get(masterTableBean.getFieldBeanByDisplay("合同名称").getName()));
-            String contractNo = String.valueOf(map.get(masterTableBean.getFieldBeanByDisplay("合同编号").getName()));
-            String contractMoney = String.valueOf(map.get(masterTableBean.getFieldBeanByDisplay("合同金额").getName()));
-            String resultMoney = String.valueOf(map.get(masterTableBean.getFieldBeanByDisplay("累计已付金额").getName()));
+            Object contractName = map.get("合同名称");
+            Object contractNo = map.get("合同编号");
+            Object contractMoney = map.get("合同金额");
             //获取底表
             FormBean formBean = null;
             try {
                 formBean = cap4FormManager.getFormByFormCode(templateCode);
             } catch (BusinessException e) {
-                log.error("获取formBean失败——lisi",e);//error
+                log.error("获取formBean失败", e);//error
             }
             //document
             Document document = DocumentHelper.createDocument();
@@ -94,10 +77,10 @@ public class TimedTaskImpl implements  TimedTask{
             summaryElement.addAttribute("id", formBean.getId().toString());
             summaryElement.addAttribute("name", formBean.getMasterTableBean().getTableName());
             Element valuesElement = rootElement.addElement("values");
-            valuesElement.addElement("column").addAttribute("name", "合同编号").addElement("value").addText(contractNo != null ? contractNo : "");
-            valuesElement.addElement("column").addAttribute("name", "合同名称").addElement("value").addText(contractName != null ? contractName : "");
-            valuesElement.addElement("column").addAttribute("name", "合同金额").addElement("value").addText(contractMoney != null ? contractMoney : "");
-            valuesElement.addElement("column").addAttribute("name", "已付款金额合计").addElement("value").addText(resultMoney != null ? resultMoney : "");
+            final HashMap<Object, Object> objectObjectHashMap = new HashMap<>();
+            valuesElement.addElement("column").addAttribute("name", "合同编号").addElement("value").addText(contractNo != null ? contractNo.toString() : "");
+            valuesElement.addElement("column").addAttribute("name", "合同名称").addElement("value").addText(contractName != null ? contractName.toString() : "");
+            valuesElement.addElement("column").addAttribute("name", "合同金额").addElement("value").addText(contractMoney != null ? contractMoney.toString() : "");
             valuesElement.addElement("subForms");
             RestHttpUtils.sendPostRequest(timerRestUrlString, document.asXML());
         }
@@ -105,10 +88,10 @@ public class TimedTaskImpl implements  TimedTask{
 
     @Override
     public void init() {
-
-        final int[] i = {0};
         //任务定时器
         Timer timer = new Timer();
+        log.info("定时器初始化完成");
+        final int[] i = {0};
         //参数：
         //task - 要安排的任务。
         //delay - 执行任务之前的延迟（以毫秒为单位）。
@@ -116,15 +99,17 @@ public class TimedTaskImpl implements  TimedTask{
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
+                log.info("第" + i[0]++ + "次执行定时任务");
                 //调用发起流程的方法
-            	try {
-                    log.info("第"+ i[0]++ +"次进入定时器");
-            		initiateThePaymentProcess();
-            	}catch (Exception e) {
-					log.error("定时任务异常",e);
-				}
+                try {
+                    initiateThePaymentProcess();
+                } catch (Exception e) {
+                    log.error("定时任务异常", e);
+                }
+                //未解决bug，事件触发器间隔设置太短，会导致重复发起同一合同的付款流程
+                //且未更新原流程表中的状态
             }
             //1000 * 60 *60 * 24
-        },1000,1000 * 60 *60 * 24);
+        }, 1000, 1000 * 60 * 60 * 24);
     }
 }

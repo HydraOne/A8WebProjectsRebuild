@@ -1,6 +1,7 @@
 package com.seeyon.apps.work.work04.manager.impl;
 
 import com.seeyon.apps.work.utils.CtpCustomVariables;
+import com.seeyon.apps.work.work04.dao.impl.ContractInfoModifyDaoImpl;
 import com.seeyon.apps.work.work04.manager.ContractInfoModify;
 import com.seeyon.apps.work.work04.dao.ContractInfoModifyDao;
 import com.seeyon.cap4.form.bean.FormDataMasterBean;
@@ -22,7 +23,7 @@ import java.util.Map;
  */
 public class ContractInfoModifyImpl implements ContractInfoModify {
     //日志
-    private static final Log log = CtpLogFactory.getLog(ContractSupervisionModificationImpl.class);
+    private static final Log log = CtpLogFactory.getLog(ContractInfoModifyDaoImpl.class);
 
     @Autowired
     ContractInfoModifyDao contractInfoModifyDaoImpl;
@@ -37,7 +38,6 @@ public class ContractInfoModifyImpl implements ContractInfoModify {
         String targetTableName = null;
         try {
             targetTableName = cap4FormManager.getFormByFormCode(CtpCustomVariables.demandConfiguration_bottomSheetOfContractFile).getMasterTableBean().getTableName();
-
         } catch (BusinessException e) {
             log.error("未能找到表信息",e);
         }

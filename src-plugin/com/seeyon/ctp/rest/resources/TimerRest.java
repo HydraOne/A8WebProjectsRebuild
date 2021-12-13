@@ -50,7 +50,7 @@ public class TimerRest extends BaseResource{
         client.authenticate(restName, restPassword);
         params.put("templateCode",templateCode);
         params.put("attachments",new Long[]{});
-        params.put("senderLoginName","lisi");
+        params.put("senderLoginName","boss");
         params.put("subject","付款流程");
         params.put("data",dataXml);
         params.put("param","0");

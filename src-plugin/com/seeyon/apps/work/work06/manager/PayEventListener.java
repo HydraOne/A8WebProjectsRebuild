@@ -54,7 +54,7 @@ public class PayEventListener {
             //监听到流程结束，拿到合同编号和本次付款金额
             Map resultMap = contractManagementMapperImpl.selectTableDetailsByTableNameAndFormRecordId(tableName, formRecordId);
             String contractNo = String.valueOf(resultMap.get(masterTableBean.getFieldBeanByDisplay("合同编号").getName()));
-            String contractMoney = String.valueOf(resultMap.get(masterTableBean.getFieldBeanByDisplay("已付款金额合计").getName()));
+            String contractMoney = String.valueOf(resultMap.get(masterTableBean.getFieldBeanByDisplay("合同金额").getName()));
             //封装xml，传入工具类，调用webservice接口进行金额累加
             String WebServiceUrl =  CtpCustomVariables.demandConfiguration_webservice;
             //document

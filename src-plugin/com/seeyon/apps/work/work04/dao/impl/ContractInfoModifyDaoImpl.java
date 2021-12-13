@@ -34,6 +34,6 @@ public class ContractInfoModifyDaoImpl implements ContractInfoModifyDao {
         } catch (BusinessException | SQLException e) {
             log.error("SQL 执行异常",e);
         }
-        return resultMap != null;
+        return resultMap.size() != 0;
     }
 }
