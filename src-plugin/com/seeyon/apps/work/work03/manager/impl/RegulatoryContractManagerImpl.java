@@ -22,9 +22,9 @@ import com.seeyon.ctp.common.log.CtpLogFactory;
 import com.seeyon.ctp.util.FlipInfo;
 
 /**
- * @description: 将查询到的数据返回
- * @author: yanglinchuan
- * @date: 2021年11月26日
+ * @author wangjiahao
+ * @email wangjiahao@microcental.net
+ * 将获取到的查询数据返回
  */
 public class RegulatoryContractManagerImpl implements RegulatoryContractManager {
 	//注入Dao层

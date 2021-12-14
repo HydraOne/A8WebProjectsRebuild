@@ -3,7 +3,8 @@ package com.seeyon.apps.work.work07;
 import com.seeyon.cap4.form.bean.fieldCtrl.FormFieldCustomCtrl;
 
 /**
- * @author Ch1stuntQAQ
+ * @author wangjiahao
+ * @email  wangjiahao@microcental.net
  * @data 2021/10/7 - 14:18
  */
 public class CustomControl extends FormFieldCustomCtrl {

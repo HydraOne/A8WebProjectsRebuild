@@ -7,9 +7,9 @@ import com.seeyon.apps.work.work03.pojo.RegulatoryContract;
 import com.seeyon.ctp.common.exceptions.BusinessException;
 
 /**
- * @description: 查询到的数据接口
- * @author: yanglinchuan
- * @date: 2021年11月26日
+ * @author wangjiahao
+ * @email wangjiahao@microcental.net
+ * 将获取到的查询数据返回
  */
 public interface RegulatoryContractManager {
 

@@ -24,7 +24,11 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
-
+/**
+ * @author wangjiahao
+ * @email  wangjiahao@microcental.net
+ * 支付服务
+ */
 public class PayWebServiceImpl implements PayWebService {
 
     private static final Log log = CtpLogFactory.getLog(PayWebServiceImpl.class);

@@ -8,6 +8,7 @@ import com.seeyon.apps.work.work05.dao.TimerDao;
 import com.seeyon.cap4.form.bean.FormBean;
 import com.seeyon.cap4.form.bean.FormTableBean;
 import com.seeyon.cap4.form.service.CAP4FormManager;
+import com.seeyon.ctp.common.AppContext;
 import com.seeyon.ctp.common.exceptions.BusinessException;
 import com.seeyon.ctp.common.log.CtpLogFactory;
 import org.apache.commons.logging.Log;
@@ -21,6 +22,7 @@ import java.util.*;
 /**
  * @author wangjiahao
  * @email wangjiahao@microcental.net
+ * 定时任务
  */
 public class TimedTaskImpl implements TimedTask {
 
@@ -28,8 +30,7 @@ public class TimedTaskImpl implements TimedTask {
     private static final Log log = CtpLogFactory.getLog(TimedTaskImpl.class);
 
     //注入表单管理对象
-    @Autowired
-    private CAP4FormManager cap4FormManager;
+    private CAP4FormManager cap4FormManager = (CAP4FormManager) AppContext.getBean("cap4FormManager");
 
     //注入dao层
     @Autowired
@@ -110,6 +111,6 @@ public class TimedTaskImpl implements TimedTask {
                 //且未更新原流程表中的状态
             }
             //1000 * 60 *60 * 24
-        }, 1000, 1000 * 60 * 60 * 24);
+        }, 1000, 1000 * 10);
     }
 }

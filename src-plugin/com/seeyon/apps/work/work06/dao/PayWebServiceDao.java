@@ -4,11 +4,16 @@ import com.seeyon.ctp.common.exceptions.BusinessException;
 
 import java.util.Map;
 
+/**
+ * @author wangjiahao
+ * @email  wangjiahao@microcental.net
+ * 支付服务Service层
+ */
 public interface PayWebServiceDao {
     //查询付款信息
-    public Map findPay(String htNum) throws BusinessException;
+    Map findPay(String htNum) throws BusinessException;
 
     //更新付款金额
-    public void updatePay(String num, String htNum) throws BusinessException;
+    void updatePay(String num, String htNum) throws BusinessException;
 
 }

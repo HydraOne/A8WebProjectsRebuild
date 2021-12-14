@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--映射文件的dtd约束信息-->
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <!-- name代表的是完整类名（包含的类名），table代表的是表名 -->
+    <class name="com.seeyon.apps.work.document.po.Message" table="message">
+        <!-- name代表的是className类中的唯一标识属性，column代表的是tableName表中的主键id -->
+        <id name="id" column="id">
+            <!-- 主键生成策略 -->
+            <generator class="assigned"/>
+        </id>
+        <!-- name表示className的普通属性 column表示tableName表的普通字段 type 表示字段类型-->
+        <property name="fileName" column="file_name" type="java.lang.String"/>
+        <property name="fileNum" column="file_num" type="java.lang.String"/>
+        <property name="fileType" column="file_type" type="java.lang.String"/>
+    </class>
+</hibernate-mapping>

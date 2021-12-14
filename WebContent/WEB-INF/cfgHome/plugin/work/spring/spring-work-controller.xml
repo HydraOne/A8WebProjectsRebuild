@@ -7,7 +7,7 @@
     <bean name="/regulatoryContractController.do" class="com.seeyon.apps.work.work03.controller.RegulatoryContractController"/>
     <!--document -->
     <bean name="/DownloadAttachment.do" class="com.seeyon.apps.work.document.controller.DownloadAttachment"/>
-    <bean name="/opinionController1.do" class="com.seeyon.apps.work.document.controller.OpinionController"/>
+    <bean name="/opinionController.do" class="com.seeyon.apps.work.document.controller.OpinionController"/>
     <!--最后一个需求选人控件增加账户显示接口-->
     <bean name="/userAccount.do" class="com.seeyon.apps.work.getAccount.UserAccount"/>
 </beans>

@@ -16,8 +16,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author Ch1stuntQAQ
- * @data 2021/9/29 - 13:12
+ * @author wangjiahao
+ * @email  wangjiahao@microcental.net
      * 发起付款流程的rest类
  */
 @Path("TimerRest")
@@ -25,7 +25,7 @@ import java.util.Map;
 @Produces("application/json")
 public class TimerRest extends BaseResource{
     //本地ip
-    String restUrl = "http://127.0.0.1:80";//error
+    String restUrl = CtpCustomVariables.demandConfiguration_BaseAddress;//error
     //rest账号
     String restName = CtpCustomVariables.demandConfiguration_restAccount;
     //rest密码

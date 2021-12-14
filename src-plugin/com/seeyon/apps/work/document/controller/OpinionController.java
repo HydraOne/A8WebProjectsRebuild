@@ -8,6 +8,7 @@ import com.seeyon.ctp.common.exceptions.BusinessException;
 import com.seeyon.ctp.util.Strings;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
@@ -17,12 +18,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 意见的controller
+ * @author wangjiahao
+ * @email  wangjiahao@microcental.net
+ * 意见controller
  */
 public class OpinionController extends BaseController {
     private static final Log LOGGER = LogFactory.getLog(OpinionController.class);
 
-    private final OpinionListManager opinionListManager = (OpinionListManager) AppContext.getBean("opinionListManager1");
+    @Autowired
+    private OpinionListManager opinionListManager;
 
     //进行查看页面跳转
     public ModelAndView findOpinion(HttpServletRequest request, HttpServletResponse response) throws BusinessException {

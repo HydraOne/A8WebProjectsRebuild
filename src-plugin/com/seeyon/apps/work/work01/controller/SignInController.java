@@ -18,7 +18,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.Random;
 
 /**
- * @data 2021/9/24 - 10:03
+ * @author wangjiahao
  * @Description TODO 单点登陆的控制层，用于单点登陆的校验 校验唯一值为 登陆名 loginName
  */
 public class SignInController extends BaseController {

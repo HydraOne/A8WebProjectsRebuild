@@ -11,11 +11,16 @@ import com.seeyon.ctp.common.log.CtpLogFactory;
 import com.seeyon.ctp.util.JDBCAgent;
 import org.apache.commons.logging.Log;
 import org.springframework.beans.factory.annotation.Autowired;
+import sun.management.resources.agent;
 
 import java.util.HashMap;
 import java.util.Map;
 
-
+/**
+ * @author wangjiahao
+ * @email  wangjiahao@microcental.net
+ * 支付服务Service层实现类
+ */
 public class PayWebServiceDaoImpl implements PayWebServiceDao {
 
     private static final Log log = CtpLogFactory.getLog(PayWebServiceDaoImpl.class);
@@ -47,14 +52,10 @@ public class PayWebServiceDaoImpl implements PayWebServiceDao {
         String htbh = table.getFieldBeanByDisplay("合同编号").getName();
         String ljyf = table.getFieldBeanByDisplay("累计已付金额").getName();
         String sql = "update " + table.getTableName() + " set "+ljyf+ " = " + num + " where "+htbh+" = '" + htNum + "'";
-            JDBCAgent agent = null ;
-        try{
-            agent = new JDBCAgent(false, false);
-            agent.execute(sql);
+        try(JDBCAgent jdbcAgent=new JDBCAgent(false, false)){
+            jdbcAgent.execute(sql);
         } catch (Exception e) {
             log.error("添加累计金额错误", e);
-        }finally {
-            agent.close();
         }
     }
 }

@@ -11,7 +11,11 @@ import org.apache.commons.logging.Log;
 
 import java.sql.SQLException;
 import java.util.Map;
-
+/**
+ * @author wangjiahao
+ * @email wangjiahao@microcental.net
+ * 判断是否为已写入底表数据
+ */
 public class ContractInfoModifyDaoImpl implements ContractInfoModifyDao {
     // 注入cap4
     private final FormApi4Cap4 formApi4Cap4 = (FormApi4Cap4) AppContext.getBean("formApi4Cap4");

@@ -1,8 +1,9 @@
 package com.seeyon.apps.work.document.manager.impl;
 
 import com.seeyon.apps.work.document.bo.OpinionBO;
+import com.seeyon.apps.work.document.dao.OpinionListDao;
 import com.seeyon.apps.work.document.dao.impl.EdocOpinionDaoImpl;
-import com.seeyon.apps.work.document.manager.EdocOpinionManager;
+import com.seeyon.apps.work.document.dao.impl.Test;
 import com.seeyon.apps.work.document.manager.OpinionListManager;
 import com.seeyon.ctp.common.AppContext;
 import com.seeyon.ctp.util.FlipInfo;
@@ -13,8 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.*;
 
-
 /**
+ * @author wangjiahao
+ * @email  wangjiahao@microcental.net
  * 查询公文意见 也可修改意见
  */
 public class OpinionListManagerImpl implements OpinionListManager {
@@ -22,30 +24,29 @@ public class OpinionListManagerImpl implements OpinionListManager {
     private static final Log LOGGER = LogFactory.getLog(OpinionListManagerImpl.class);
 
     @Autowired
-    private EdocOpinionManager edocOpinionManager;
+    private EdocOpinionDaoImpl edocOpinionDao;
 
     @Autowired
-    private EdocOpinionDaoImpl edocOpinionDao;
+    private OpinionListDao opinionListDaoImpl;
 
     @Override
     @AjaxAccess
     public FlipInfo opinionList(FlipInfo fi, Map pas) {
         long currentTimeMillisTwo2 = System.currentTimeMillis();
         LOGGER.info("00--开始查询意见---" + new Date().getTime());
-        List<OpinionBO> queryList = new ArrayList<>();
+        List<OpinionBO> queryList = new LinkedList<>();
         Long userId = AppContext.currentUserId();
+//        new Test().getPersonalOpinionsByCreateId(userId,fi,pas);
         pas.put("userId", userId);
         try {
             //获得默认密级
             //查询自己处理过的意见
             long time = System.currentTimeMillis();
-            Map<String, Object> pa = this.packageSql(pas, userId);
-            StringBuffer sql = (StringBuffer) pa.get("sql");
-            Map<String, Object> p = (Map<String, Object>) pa.get("p");
             //根据userId 查询edocOpinionList
             long currentTimeMillis = System.currentTimeMillis();
             LOGGER.info("0001--开始使用公文id查询意见---" + currentTimeMillis);
-            List<Map<String, Object>> opinions = edocOpinionManager.findOpinionList(sql.toString(), p, fi);
+            long currentUserId = AppContext.currentUserId();
+            List<Map<String, Object>> opinions = opinionListDaoImpl.getPersonalOpinionsByCreateId(currentUserId,fi,pas);
             Long ss = System.currentTimeMillis() - currentTimeMillis;
             LOGGER.info("0002--开始使用公文id查询意见--所用耗时---" + ss);
             for (Map<String, Object> map : opinions) {
@@ -60,7 +61,7 @@ public class OpinionListManagerImpl implements OpinionListManager {
                 if (map.get("subject")==null){
                     opinionBO.setSubject("");
                 }else {
-                    opinionBO.setSubject(String.valueOf(map.get("doc_mark")));
+                    opinionBO.setSubject(String.valueOf(map.get("subject")));
                 }
                 //创建人
                 if (map.get("create_person")==null){
@@ -85,16 +86,16 @@ public class OpinionListManagerImpl implements OpinionListManager {
                 opinionBO.setId(Long.valueOf(String.valueOf(map.get("id"))));
                 //意见类型
                 //opinionBO.setOpinionType(Integer.valueOf(String.valueOf(map.get("attribute"))));
-                if (map.get("create_time") == null){
+                if (map.get("create_date") == null){
                     opinionBO.setCreateTime(new Date());
                 }else {
-                    opinionBO.setCreateTime((Date) (map.get("create_time")));
+                    opinionBO.setCreateTime((Date) (map.get("create_date")));
                 }
                 queryList.add(opinionBO);
             }
-            Long xx = System.currentTimeMillis() - currentTimeMillisTwo2;
+            long xx = System.currentTimeMillis() - currentTimeMillisTwo2;
             LOGGER.info("00--结束查询意见---" + xx);
-            if (queryList != null) {
+            if (queryList.size()!=0) {
                 fi.setData(queryList);
             }
             //封装数据，向前台传值
@@ -108,55 +109,5 @@ public class OpinionListManagerImpl implements OpinionListManager {
     @AjaxAccess
     public void updateOpinionData(Long opinionId, String opinionContent) {
         edocOpinionDao.update(opinionId, opinionContent);
-    }
-
-    public Map<String, Object> packageSql(Map<String, Object> map, Long userId) {
-        StringBuffer sql = new StringBuffer();
-        Map<String, Object> p = new HashMap();
-        Map<String, Object> pa = new HashMap();
-        List<Long> longList = new ArrayList();
-        sql.append("a.CREATE_ID = "+ String.valueOf(userId));
-        //p.put("userId", userId);
-        if (map.get("attribute") != null && !"".equals(map.get("attribute"))) {
-            Integer type = Integer.valueOf((String) map.get("attribute"));
-            if (sql.length() > 0)
-                sql.append(" and");
-            sql.append(" attribute=:attribute");
-            p.put("attribute", type);
-        }
-
-        if (map.get("subject") != null) {
-            if (sql.length() > 0)
-                sql.append(" and");
-            sql.append(" c.subject like :subject");
-            p.put("subject", "%" + map.get("subject") + "%");
-        }
-        if (map.get("datetime") != null) {
-            if (sql.length() > 0)
-                sql.append(" and");
-            List object = (List) map.get("datetime");
-            sql.append(" to_char( b.create_time, 'yyyy-mm-dd hh24:mi:ss' ) >= :crateaDate AND to_char( b.create_time, 'yyyy-mm-dd hh24:mi:ss' ) <= :endDate ");
-            p.put("crateaDate", object.get(0));
-            p.put("endDate", object.get(1));
-        }
-        if (map.get("createPerson") != null) {
-            if (sql.length() > 0)
-                sql.append(" and");
-            sql.append(" d.name like :createPerson");
-            p.put("createPerson", "%" + map.get("createPerson") + "%");
-        }
-        if (map.get("docMark") != null) {
-            if (sql.length() > 0)
-                sql.append(" and");
-            sql.append(" c.doc_Mark like :docMark");
-            p.put("docMark", "%" + map.get("docMark") + "%");
-        }
-        sql.insert(0, "select distinct b.CONTENT,b.ID,b.CREATE_DATE,d.NAME,c.DOC_MARK,c.SUBJECT,c.CREATE_PERSON  " +
-                "from ctp_comment_all b left join ctp_comment_all a on a.CREATE_ID = b.CREATE_ID left join EDOC_SUMMARY c on b.CREATE_ID = c.id " +
-                "left join org_member d on b.CREATE_ID = d.id "+(sql.length() > 0 ? " where " : ""));
-        sql.append(" and b.CONTENT is not null order by b.CREATE_DATE desc");
-        pa.put("p", p);
-        pa.put("sql", sql);
-        return pa;
     }
 }

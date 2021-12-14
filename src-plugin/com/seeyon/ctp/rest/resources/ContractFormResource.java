@@ -22,8 +22,8 @@ import java.sql.SQLException;
 import java.util.*;
 
 /**
- * @author Ch1stuntQAQ
- * @data 2021/9/29 - 13:12
+ * @author wangjiahao
+ * @email  wangjiahao@microcental.net
  * @Description 合同监管的rest类
  */
 @Path("ContractFormResource")

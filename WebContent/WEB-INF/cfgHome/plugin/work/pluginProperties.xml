@@ -17,11 +17,8 @@
         <webservice mark="{VE}" desc="webservice接口地址">http://localhost:80/seeyon/services/payWebServiceImpl?wsdl</webservice>
         <downloadfile mark="{VE}" desc="文件下载的地址">D:\A8download</downloadfile>
         <ftpIP mark="{VE}" desc="虚拟机Ftp地址">192.168.80.131</ftpIP>
-        <ftpIP mark="{VE}" desc="虚拟机Ftp地址">192.168.80.131</ftpIP>
+        <ftpPort mark="{VE}" desc="虚拟机Ftp地址">21</ftpPort>
         <ftpAccount mark="{VE}" desc="虚拟机登录账号">ftpadmin</ftpAccount>
         <ftpPassWrod mark="{VE}" desc="虚拟机登录密码">Passw0rd</ftpPassWrod>
-        <JDBCUrl mark="{VE}" desc="数据库地址">jdbc:mysql://localhost:3306/A8?serverTimezone=UTC&amp;characterEncoding=utf-8&amp;useSSL=false</JDBCUrl>
-        <JDBCUser mark="{VE}" desc="数据库账号">root</JDBCUser>
-        <JDBCPassword mark="{VE}" desc="数据库密码">123456</JDBCPassword>
     </demandConfiguration>
 </ctpConfig>

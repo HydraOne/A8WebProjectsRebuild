@@ -1,8 +1,8 @@
 package com.seeyon.apps.work.document.controller;
 
 import com.seeyon.apps.work.document.dao.MyFileDao;
-import com.seeyon.apps.work.work01.dao.ContractManagementMapper;
-import com.seeyon.ctp.common.controller.BaseController;
+import com.seeyon.apps.work.utils.CtpCustomVariables;
+import com.seeyon.apps.work.work01.dao.ContractManagementDao;
 import com.seeyon.cap4.form.bean.FormBean;
 import com.seeyon.cap4.form.bean.FormFieldBean;
 import com.seeyon.cap4.form.bean.FormTableBean;
@@ -19,14 +19,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.*;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.*;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Map;
 
 /**
- * @author Ch1stuntQAQ
- * @data 2021/10/8 - 13:45
+ * @author wangjiahao
+ * @email  wangjiahao@microcental.net
  * 附件下载的controller
  */
 public class DownloadAttachment extends BaseController {
@@ -40,7 +40,7 @@ public class DownloadAttachment extends BaseController {
     private AffairManager affairManager;
     //需求6-1dao
     @Autowired
-    private ContractManagementMapper contractManagementMapper;
+    private ContractManagementDao contractManagementMapper;
     @Autowired
     private MyFileDao myFileDao;
 
@@ -53,7 +53,7 @@ public class DownloadAttachment extends BaseController {
         try {
             ctpAffair = affairManager.get(Long.valueOf(affairId));
         } catch (BusinessException e) {
-            logger.error("根据id获取affair出现异常---",e);
+            logger.error("根据id获取affair出现异常",e);
         }
 
         Long appId = ctpAffair.getFormAppId();
@@ -92,7 +92,7 @@ public class DownloadAttachment extends BaseController {
                     file = myFileDao.getFile(aLong);
                     fileType = myFileDao.getFileType(aLong);
                 } catch (BusinessException e) {
-                    logger.error(e);
+                    logger.error("获取文件异常",e);  //error   打印日志需要打印出时什么问题  两个参数   第一个是什么导致的问题   第二个才是e   示例：logger.error(“XXXX出现异常---wangjiahao”，e);
                 }
                 getFile(file,fileType);
             }
@@ -100,12 +100,12 @@ public class DownloadAttachment extends BaseController {
     }
     //下载文件
     private void getFile(File srcFile,String type) {
-        String desFile = AppContext.getSystemProperty("demandConfiguration.downloadfile");
+        String desFile = CtpCustomVariables.demandConfiguration_downloadFile;
         String name = srcFile.getName() + "." + type;
         try {
             FileUtils.copyFile(srcFile, new File(desFile, name));
         } catch (IOException e) {
-            logger.error(e);
+            logger.error("复制文件失败",e);  //error
         }
     }
 }

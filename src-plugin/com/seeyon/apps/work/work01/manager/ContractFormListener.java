@@ -5,11 +5,10 @@ import com.seeyon.apps.collaboration.event.CollaborationFinishEvent;
 import com.seeyon.apps.collaboration.po.ColSummary;
 import com.seeyon.apps.work.utils.CtpCustomVariables;
 import com.seeyon.apps.work.utils.RestHttpUtils;
-import com.seeyon.apps.work.work01.dao.ContractManagementMapper;
+import com.seeyon.apps.work.work01.dao.ContractManagementDao;
 import com.seeyon.cap4.form.api.FormApi4Cap4;
 import com.seeyon.cap4.form.bean.FormBean;
 import com.seeyon.cap4.form.bean.FormTableBean;
-import com.seeyon.cap4.form.service.CAP4FormManager;
 import com.seeyon.ctp.common.AppContext;
 import com.seeyon.ctp.common.exceptions.BusinessException;
 import com.seeyon.ctp.util.annotation.ListenEvent;
@@ -18,13 +17,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 
 /**
- * 
- * @author CestutntQAQ
- * 合同前订后监管系统监听
- *
+ * @author wangjiahao
+ * @email wangjiahao@microcental.net
+ * 合同监管流程结束监听
  */
 public class ContractFormListener {
 
@@ -33,11 +30,11 @@ public class ContractFormListener {
 
 	//注入dao层
 	@Autowired
-	private ContractManagementMapper contractManagementMapper;
+	private ContractManagementDao contractManagementMapper;
 	
 	//注入表单管理对象
 	@Autowired
-	private FormApi4Cap4 cap4FormManager = (FormApi4Cap4) AppContext.getBean("formApi4Cap4");
+	private FormApi4Cap4 formApi4Cap4 = (FormApi4Cap4) AppContext.getBean("formApi4Cap4");
 	
 	
 	//监听协作结束时的事件
@@ -51,7 +48,7 @@ public class ContractFormListener {
 		//获取具体该条数据的id
 		Long formRecordid = summary.getFormRecordid();
 		//通过表单模板id渠道具体的表单记录
-		FormBean form = cap4FormManager.getForm(formAppid);
+		FormBean form = formApi4Cap4.getForm(formAppid);
 		//初始化tableBean
 		FormTableBean masterTableBean = null;
 		//非空判断
@@ -69,7 +66,7 @@ public class ContractFormListener {
 			try {
 				//从本地配置中获取流程合同模板id
 				String formTemplateId = CtpCustomVariables.demandConfiguration_contractFileFlowChart;
-				String currentFormName = cap4FormManager.getFormByFormCode(formTemplateId).getMasterTableBean().getTableName();
+				String currentFormName = formApi4Cap4.getFormByFormCode(formTemplateId).getMasterTableBean().getTableName();
 				if (!tableName.equals(currentFormName)) {
 					return;
 				}

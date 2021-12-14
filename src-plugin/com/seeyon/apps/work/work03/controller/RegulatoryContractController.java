@@ -19,11 +19,10 @@ import com.seeyon.ctp.common.exceptions.BusinessException;
 import com.seeyon.ctp.common.log.CtpLogFactory;
 import com.seeyon.ctp.util.FlipInfo;
 
- /**
- * @author yanglinchuan
- * @describe 合同管理控制层
- * @date 2021-11-26
- *
+/**
+ * @author wangjiahao
+ * @email wangjiahao@microcental.net
+ * 合同管理控制层
  */
 public class RegulatoryContractController extends BaseController{
 	//日志

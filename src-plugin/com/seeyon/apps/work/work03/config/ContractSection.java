@@ -16,9 +16,9 @@ import com.seeyon.ctp.util.Strings;
 
 
 /**
- * @description: 合同栏目配置类
- * @author: yanglinchuan
- * @date: 2021年11月26日
+ * @author wangjiahao
+ * @email wangjiahao@microcental.net
+ * 合同栏目控件类
  */
 public class ContractSection extends BaseSectionImpl {
 

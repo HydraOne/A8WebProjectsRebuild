@@ -1,11 +1,12 @@
 package com.seeyon.apps.work.work05.dao.impl;
 
 import com.seeyon.apps.work.utils.CtpCustomVariables;
-import com.seeyon.apps.work.work01.dao.ContractManagementMapper;
 import com.seeyon.apps.work.work05.dao.PaymentStatusDao;
 import com.seeyon.apps.work.work05.dao.TimerDao;
+import com.seeyon.cap4.form.api.FormApi4Cap4;
 import com.seeyon.cap4.form.bean.FormTableBean;
 import com.seeyon.cap4.form.service.CAP4FormManager;
+import com.seeyon.ctp.common.AppContext;
 import com.seeyon.ctp.common.exceptions.BusinessException;
 import com.seeyon.ctp.common.log.CtpLogFactory;
 import com.seeyon.ctp.util.JDBCAgent;
@@ -28,8 +29,7 @@ public class TimerDaoImpl implements TimerDao {
     //日志
     private static final Log log = CtpLogFactory.getLog(TimerDaoImpl.class);
     //表单管理对象
-    @Autowired
-    private CAP4FormManager cap4FormManager;
+    private FormApi4Cap4 formApi4Cap4 = (FormApi4Cap4) AppContext.getBean("formApi4Cap4");
 
     @Autowired
     private PaymentStatusDao paymentStatusDaoImpl;
@@ -44,7 +44,7 @@ public class TimerDaoImpl implements TimerDao {
         List<FormTableBean> subTableBean = null;
         try {
             //此处获取的是子表javabean对象
-            subTableBean = cap4FormManager.getFormByFormCode(CtpCustomVariables.demandConfiguration_contractFileFlowChart).getSubTableBean();
+            subTableBean = formApi4Cap4.getFormByFormCode(CtpCustomVariables.demandConfiguration_contractFileFlowChart).getSubTableBean();
         } catch (BusinessException e) {
             log.error("获取子表异常", e);
         }
@@ -98,25 +98,25 @@ public class TimerDaoImpl implements TimerDao {
         stringBuilder.deleteCharAt(len - 1);
         FormTableBean masterTableBean = null;
         try {
-            masterTableBean = cap4FormManager.getFormByFormCode(CtpCustomVariables.demandConfiguration_contractFileFlowChart).getMasterTableBean();
+            masterTableBean = formApi4Cap4.getFormByFormCode(CtpCustomVariables.demandConfiguration_contractFileFlowChart).getMasterTableBean();
         } catch (BusinessException e) {
             log.error("获取主表异常", e);
         }
         FormTableBean bottomTable = null;
         try {
-            bottomTable = cap4FormManager.getFormByFormCode(CtpCustomVariables.demandConfiguration_bottomSheetOfContractFile).getMasterTableBean();
+            bottomTable = formApi4Cap4.getFormByFormCode(CtpCustomVariables.demandConfiguration_bottomSheetOfContractFile).getMasterTableBean();
         } catch (BusinessException e) {
             log.error("未能找到表信息", e);
         }
         if (resultList != null && resultList.size() > 0) {
-            String ids = "(" + stringBuilder.toString() + ")";
-            String flowTableContractNumColName = masterTableBean.getTableName() + "." + masterTableBean.getFieldBeanByDisplay("合同编号").getName();
+            StringBuffer ids = new StringBuffer("(").append(stringBuilder.toString()).append(")");
+            StringBuffer flowTableContractNumColName = new StringBuffer(masterTableBean.getTableName()).append(".").append(masterTableBean.getFieldBeanByDisplay("合同编号").getName());
             String bottomTableContractNumColName = bottomTable.getTableName() + "." + bottomTable.getFieldBeanByDisplay("合同编号").getName();
-            String sql2 = "SELECT " + masterTableBean.getTableName() + ".* FROM " + masterTableBean.getTableName() +
-                    " right join " + bottomTable.getTableName() + " on " +
-                    flowTableContractNumColName + "=" + bottomTableContractNumColName + " WHERE " + masterTableBean.getTableName() + ".ID in " + ids;
+            StringBuffer sql2 = new StringBuffer("SELECT ").append(masterTableBean.getTableName()).append(".* FROM ").append(masterTableBean.getTableName()).append(
+                    " right join ").append(bottomTable.getTableName()).append(" on ").append(
+                    flowTableContractNumColName).append("=").append(bottomTableContractNumColName).append(" WHERE ").append(masterTableBean.getTableName()).append(".ID in ").append(ids);
             try (JDBCAgent jdbcAgent = new JDBCAgent(false, false)) {
-                jdbcAgent.execute(sql2);
+                jdbcAgent.execute(sql.toString());
                 res = jdbcAgent.resultSetToList();
             } catch (BusinessException | SQLException e) {
                 if (e instanceof BusinessException) {

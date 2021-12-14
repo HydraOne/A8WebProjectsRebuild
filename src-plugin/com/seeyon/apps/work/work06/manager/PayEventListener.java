@@ -4,11 +4,10 @@ import com.seeyon.apps.collaboration.event.CollaborationFinishEvent;
 import com.seeyon.apps.collaboration.po.ColSummary;
 import com.seeyon.apps.work.utils.CtpCustomVariables;
 import com.seeyon.apps.work.utils.HttpHelper;
-import com.seeyon.apps.work.work01.dao.impl.ContractManagementMapperImpl;
+import com.seeyon.apps.work.work01.dao.impl.ContractManagementDaoImpl;
 import com.seeyon.cap4.form.bean.FormBean;
 import com.seeyon.cap4.form.bean.FormTableBean;
 import com.seeyon.cap4.form.service.CAP4FormManager;
-import com.seeyon.ctp.common.AppContext;
 import com.seeyon.ctp.common.log.CtpLogFactory;
 import com.seeyon.ctp.util.annotation.ListenEvent;
 import org.apache.commons.logging.Log;
@@ -19,11 +18,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Map;
 
-
+/**
+ * @author wangjiahao
+ * @email  wangjiahao@microcental.net
+ * 支付流程监听类
+ */
 public class PayEventListener {
 
     @Autowired
-    private ContractManagementMapperImpl contractManagementMapperImpl;
+    private ContractManagementDaoImpl contractManagementMapperImpl;
 
     @Autowired
     private CAP4FormManager cap4FormManager;

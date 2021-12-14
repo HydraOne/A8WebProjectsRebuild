@@ -14,9 +14,9 @@ import com.seeyon.ctp.util.FlipInfo;
 import com.seeyon.ctp.util.JDBCAgent;
 
 /**
- * @description: 查询栏目所需数据
- * @author: yanglinchuan
- * @date: 2021年11月26日
+ * @author wangjiahao
+ * @email wangjiahao@microcental.net
+ * 查询栏目数据
  */
 public class RegulatoryContractDaoImpl implements RegulatoryContractDao {
 	// 注入cap4

@@ -18,8 +18,9 @@ import java.util.Date;
 import java.util.Map;
 
 /**
- * @data 2021/9/28 - 15:47
- * @Description 监管合同档案修改
+ * @author wangjiahao
+ * @email wangjiahao@microcental.net
+ * 监管合同修改
  */
 public class ContractInfoModifyImpl implements ContractInfoModify {
     //日志

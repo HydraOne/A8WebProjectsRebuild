@@ -14,7 +14,7 @@
     <!--work06 Spring -->
     <bean id="payEventListener" class="com.seeyon.apps.work.work06.manager.PayEventListener"/>
     <!--document FTP-->
-    <bean id="FtpManager" class="com.seeyon.apps.work.document.manager.FtpManager" init-method="init"/>
+    <bean id="FtpManager" class="com.seeyon.apps.work.document.manager.impl.FtpManagerImpl" init-method="init"/>
     <bean id="opinionListManager1" class="com.seeyon.apps.work.document.manager.impl.OpinionListManagerImpl"/>
-    <bean id="edocOpinionManager1" class="com.seeyon.apps.work.document.manager.EdocOpinionManager"/>
+    <bean id="edocOpinionManager1" class="com.seeyon.apps.work.document.manager.impl.EdocOpinionManagerImpl"/>
 </beans>

@@ -1,14 +1,12 @@
 package com.seeyon.apps.work.work02.manager;
 
-import com.seeyon.apps.collaboration.event.CollaborationFinishEvent;
 import com.seeyon.apps.collaboration.event.CollaborationStartEvent;
 import com.seeyon.apps.collaboration.po.ColSummary;
 import com.seeyon.apps.timeview.po.TimeViewAuth;
 import com.seeyon.apps.timeview.po.TimeViewInfo;
 import com.seeyon.apps.work.utils.CtpCustomVariables;
-import com.seeyon.apps.work.work01.dao.ContractManagementMapper;
-import com.seeyon.apps.work.work01.manager.ContractFormListener;
-import com.seeyon.apps.work.work02.dao.FormTimeViewMapper;
+import com.seeyon.apps.work.work01.dao.ContractManagementDao;
+import com.seeyon.apps.work.work02.dao.FormTimeViewDao;
 import com.seeyon.cap4.form.bean.FormBean;
 import com.seeyon.cap4.form.bean.FormTableBean;
 import com.seeyon.cap4.form.service.CAP4FormManager;
@@ -20,14 +18,14 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import www.seeyon.com.utils.UUIDUtil;
 
-import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @data 2021/9/26 - 16:12
- * @Description 合同流程结束的事件监听，监听合同档案登记表单，获取申请日期
+ * @author wangjiahao
+ * @email wangjiahao@microcental.net
+ * 写入时间视图信息
  */
 public class EndOfContractProcessMonitoring {
 
@@ -36,14 +34,14 @@ public class EndOfContractProcessMonitoring {
 
     //注入dao层
     @Autowired
-    private FormTimeViewMapper formTimeViewMapper;
+    private FormTimeViewDao formTimeViewMapper;
 
     //注入orgManager
     @Autowired
     private OrgManager orgManager;
 
     @Autowired
-    private ContractManagementMapper contractManagementMapper;
+    private ContractManagementDao contractManagementMapper;
 
     private final CAP4FormManager cap4FormManager = (CAP4FormManager) AppContext.getBean("cap4FormManager");
 

@@ -199,7 +199,7 @@ function updateOpinion(){
 function showMessageBox0(id,opinion) {
     dialog = $.dialog({
         id: 'url',
-        url: '/seeyon/opinionController1.do?method=updateOpinionDataPage',
+        url: '/seeyon/opinionController.do?method=updateOpinionDataPage',
         width: 400,
         height: 250,
         title: '修改意见',
@@ -220,7 +220,7 @@ function showMessageBox0(id,opinion) {
 		var opinion = oo.opinion;
     $.ajax({
         type: "post",
-        url: "/seeyon/opinionController1.do?method=updateOpinionData",
+        url: "/seeyon/opinionController.do?method=updateOpinionData",
         data: {
             'id':id,'opinion':opinion
         },

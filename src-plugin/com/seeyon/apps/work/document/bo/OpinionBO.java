@@ -7,6 +7,8 @@ import java.util.Comparator;
 import java.util.Date;
 
 /**
+ * @author wangjiahao
+ * @email  wangjiahao@microcental.net
  * 意见bo
  */
 public class OpinionBO extends BaseModel implements Serializable, Comparator<OpinionBO> {

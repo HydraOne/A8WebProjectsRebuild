@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * @author wangjiahao
+ * @email wangjiahao@microcental.net
  * 查询公文意见、可修改意见
  */
 public interface EdocOpinionDao {

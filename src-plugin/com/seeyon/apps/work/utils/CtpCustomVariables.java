@@ -24,10 +24,8 @@ public class CtpCustomVariables {
     public final static String demandConfiguration_ftpIP = getCtpCustomVariableByKey("ftpIP");
     public final static String demandConfiguration_ftpAccount = getCtpCustomVariableByKey("ftpAccount");
     public final static String demandConfiguration_ftpPassWord = getCtpCustomVariableByKey("ftpPassWrod");
-    public final static String demandConfiguration_JDBCUrl = getCtpCustomVariableByKey("JDBCUrl");
-    public final static String demandConfiguration_JDBCUser = getCtpCustomVariableByKey("JDBCUser");
-    public final static String demandConfiguration_JDBCPassword = getCtpCustomVariableByKey("JDBCPassword");
     public final static String demandConfiguration_BaseAddress = getCtpCustomVariableByKey("baseAddress");
+    public final static String demandConfiguration_ftpPort = getCtpCustomVariableByKey("ftpPort");
 
     private static String getCtpCustomVariableByKey(String keyName){
         String prefKey = "demandConfiguration.";

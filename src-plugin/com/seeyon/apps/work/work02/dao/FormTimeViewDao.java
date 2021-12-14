@@ -4,10 +4,11 @@ import com.seeyon.apps.timeview.po.TimeViewAuth;
 import com.seeyon.apps.timeview.po.TimeViewInfo;
 
 /**
- * @data 2021/9/26 - 16:33
- * mapper接口
+ * @author wangjiahao
+ * @email wangjiahao@microcental.net
+ * 时间视图存储层接口
  */
-public interface FormTimeViewMapper {
+public interface FormTimeViewDao {
     void addTimeViewInfo(TimeViewInfo timeViewInfo);
 
     void addTimeViewAuth(TimeViewAuth timeViewAuth);

@@ -11,6 +11,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author wangjiahao
+ * @email wangjiahao@microcental.net
+ * 获取枚举的值
+ */
 public class PaymentStatusDaoImpl implements PaymentStatusDao {
     //日志
     private static final Log log = CtpLogFactory.getLog(PaymentStatusDaoImpl.class);

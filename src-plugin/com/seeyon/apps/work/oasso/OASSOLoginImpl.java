@@ -15,6 +15,7 @@ import java.util.Date;
  * @Description TODO  用于单点登陆的握手类
  * @createTime 2021年08月25日 15:30:00
  */
+
 public class OASSOLoginImpl extends SSOLoginHandshakeAbstract {
 
     private static final Log log = LogFactory.getLog(OASSOLoginImpl.class);

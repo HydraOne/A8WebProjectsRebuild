@@ -4,9 +4,9 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 /**
- * @description: 监管合同实体类
- * @author: yanglinchuan
- * @date: 2021年11月26日
+ * @author wangjiahao
+ * @email wangjiahao@microcental.net
+ * 监管合同实体类
  */
 public class RegulatoryContract {
 	//经办人

@@ -2,13 +2,15 @@ package com.seeyon.apps.work.work02.dao.impl;
 
 import com.seeyon.apps.timeview.po.TimeViewAuth;
 import com.seeyon.apps.timeview.po.TimeViewInfo;
-import com.seeyon.apps.work.work02.dao.FormTimeViewMapper;
+import com.seeyon.apps.work.work02.dao.FormTimeViewDao;
 import com.seeyon.ctp.util.DBAgent;
 
 /**
- * @data 2021/9/26 - 16:48
+ * @author wangjiahao
+ * @email wangjiahao@microcental.net
+ * 时间视图存储类
  */
-public class FormTimeViewMapperImpl implements FormTimeViewMapper {
+public class FormTimeViewDaoImpl implements FormTimeViewDao {
     @Override
     public void addTimeViewInfo(TimeViewInfo timeViewInfo) {
         DBAgent.save(timeViewInfo);

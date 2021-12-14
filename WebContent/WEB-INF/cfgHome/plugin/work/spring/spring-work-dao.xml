@@ -2,9 +2,9 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http:springframework.org.dtd/spring-beans.dtd">
 <beans default-autowire="byName">
     <!--work01-->
-    <bean id="contractManagementMapperImpl" class="com.seeyon.apps.work.work01.dao.impl.ContractManagementMapperImpl"/>
+    <bean id="contractManagementMapperImpl" class="com.seeyon.apps.work.work01.dao.impl.ContractManagementDaoImpl"/>
     <!--work02-->
-    <bean id="formTimeViewMapperImpl" class="com.seeyon.apps.work.work02.dao.impl.FormTimeViewMapperImpl"/>
+    <bean id="formTimeViewMapperImpl" class="com.seeyon.apps.work.work02.dao.impl.FormTimeViewDaoImpl"/>
     <!--work03-->
     <bean id="regulatoryContractDaoImpl" class="com.seeyon.apps.work.work03.dao.impl.RegulatoryContractDaoImpl"/>
     <!--work04-->
@@ -19,4 +19,5 @@
     <bean id="FtpDaoImpl" class="com.seeyon.apps.work.document.dao.impl.FtpDaoImpl"/>
     <bean id="QuartzDaoImpl" class="com.seeyon.apps.work.document.dao.impl.QuartzDaoImpl"/>
     <bean id="edocOpinionDaoImpl" class="com.seeyon.apps.work.document.dao.impl.EdocOpinionDaoImpl"/>
+    <bean id="opinionListDaoImpl" class="com.seeyon.apps.work.document.dao.impl.OpinionListDaoImpl"/>
 </beans>
